@@ -1,3 +1,7 @@
+# 0.1.9 -- more dependencies
+
+1. Specified more dependencies in package.json
+
 # 0.1.6 -- handle 500 errors better
 
 1. Update ethjs-query
