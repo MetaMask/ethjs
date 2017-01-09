@@ -2,6 +2,7 @@ const EthQuery = require('ethjs-query');
 const EthFilter = require('ethjs-filter');
 const EthContract = require('ethjs-contract');
 const HttpProvider = require('ethjs-provider-http');
+// const getTxSuccess = require('ethjs-transaction-success'); // eslint-disable-line
 const unit = require('ethjs-unit');
 const keccak256 = require('js-sha3').keccak_256;
 const toBN = require('number-to-bn');
@@ -32,6 +33,7 @@ function Eth(cprovider, options) {
     });
     self.filter = new EthFilter(query, self.options.query);
     self.contract = new EthContract(query, self.options.query);
+//    self.getTransactionSuccess = (txHash, cb) => getTxSuccess(self.getTransactionReceipt, txHash, cb);
   };
   self.setProvider(cprovider);
 }
