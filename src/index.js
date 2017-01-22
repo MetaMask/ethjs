@@ -25,17 +25,14 @@ function Eth(cprovider, options) {
   if (!(this instanceof Eth)) { throw new Error('[ethjs] the Eth object requires you construct it with the "new" flag (i.e. `const eth = new Eth(...);`).'); }
   const self = this;
   self.options = options || {};
-  self.setProvider = (provider) => {
-    const query = new EthQuery(provider, self.options.query);
-    self.currentProvider = provider;
-    Object.keys(Object.getPrototypeOf(query)).forEach((methodName) => {
-      self[methodName] = (...args) => query[methodName].apply(query, args);
-    });
-    self.filter = new EthFilter(query, self.options.query);
-    self.contract = new EthContract(query, self.options.query);
-//    self.getTransactionSuccess = (txHash, cb) => getTxSuccess(self.getTransactionReceipt, txHash, cb);
-  };
-  self.setProvider(cprovider);
+  const query = new EthQuery(cprovider, self.options.query);
+  Object.keys(Object.getPrototypeOf(query)).forEach((methodName) => {
+    self[methodName] = (...args) => query[methodName].apply(query, args);
+  });
+  self.filter = new EthFilter(query, self.options.query);
+  self.contract = new EthContract(query, self.options.query);
+  self.currentProvider = query.rpc.currentProvider;
+  self.setProvider = query.setProvider;
 }
 
 Eth.BN = BN;

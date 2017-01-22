@@ -1,3 +1,7 @@
+# 0.2.0 -- provider upate
+
+1. Set Provider now more dynamic accross all modules
+
 # 0.1.9 -- more dependencies
 
 1. Specified more dependencies in package.json
