@@ -1,6 +1,6 @@
 {
   "name": "ethjs",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A light-weight, highly optimised JS utility for Ethereum",
   "main": "lib/index.js",
   "files": [
@@ -41,7 +41,7 @@
     "ethjs-provider-http": "0.1.6",
     "bn.js": "4.11.6",
     "js-sha3": "0.5.5",
-    "ethjs-query": "0.2.2",
+    "ethjs-query": "0.2.3",
     "number-to-bn": "1.7.0",
     "ethjs-unit": "0.1.6",
     "ethjs-util": "0.1.3",
