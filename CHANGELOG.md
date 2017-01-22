@@ -1,3 +1,7 @@
+# 0.2.1 -- package updates
+
+1. Updates provider
+
 # 0.2.0 -- provider upate
 
 1. Set Provider now more dynamic accross all modules
