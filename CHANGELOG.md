@@ -1,4 +1,4 @@
-# 0.2.1 -- package updates
+# 0.2.2 -- package updates
 
 1. Updates provider
 
