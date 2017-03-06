@@ -7444,12 +7444,38 @@ module.exports = {
 // workaround to use httpprovider in different envs
 var XHR2 = __webpack_require__(24);
 
+/*
+""
+responseText
+:
+""
+responseType
+:
+""
+responseURL
+:
+"https://ropsten.infura.io/"
+responseXML
+:
+null
+status
+:
+405
+statusText
+:
+"Method Not Allowed"
+timeout
+:
+0
+*/
+
 /**
  * InvalidResponseError helper for invalid errors.
  */
-function invalidResponseError(result, host) {
-  var message = !!result && !!result.error && !!result.error.message ? '[ethjs-provider-http] ' + result.error.message : '[ethjs-provider-http] Invalid JSON RPC response from host provider ' + host + ': ' + JSON.stringify(result, null, 2);
-  return new Error(message);
+function invalidResponseError(request, host) {
+  var responseError = new Error('[ethjs-provider-http] Invalid JSON RPC response from provider\n    host: ' + host + '\n    response: ' + String(request.responseText) + ' ' + JSON.stringify(request.responseText, null, 2) + '\n    responseURL: ' + request.responseURL + '\n    status: ' + request.status + '\n    statusText: ' + request.statusText + '\n  ');
+  responseError.value = request;
+  return responseError;
 }
 
 /**
@@ -7492,7 +7518,7 @@ HttpProvider.prototype.sendAsync = function (payload, callback) {
       try {
         result = JSON.parse(result);
       } catch (jsonError) {
-        error = invalidResponseError(request.responseText, self.host);
+        error = invalidResponseError(request, self.host);
       }
 
       callback(error, result);
