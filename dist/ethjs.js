@@ -8029,6 +8029,23 @@ module.exports = {
 			[],
 			"B"
 		],
+		"personal_sign": [
+			[
+				"D20",
+				"D",
+				"S"
+			],
+			"D",
+			2
+		],
+		"personal_ecRecover": [
+			[
+				"D",
+				"D"
+			],
+			"D20",
+			2
+		],
 		"eth_protocolVersion": [
 			[],
 			"S"
