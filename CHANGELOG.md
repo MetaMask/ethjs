@@ -1,3 +1,14 @@
+# 0.2.7 -- abi updated, format and contract updates
+
+1. Updated ethjs-abi, ethjs-format, ethjs-query, ethjs-contract
+2. The updates will fix some small problems with geth/parity compat
+
+# 0.2.6 -- added abi, personal sign/ecrecover
+
+1. Expose ABI module
+2. Added personal_sign/personal_ecRecover
+3. Added log decoders
+
 # 0.2.4 -- package updates
 
 1. Updates provider, handle 405 better
