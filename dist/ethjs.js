@@ -63,7 +63,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 27);
+/******/ 	return __webpack_require__(__webpack_require__.s = 28);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -81,9 +81,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 'use strict'
 
-var base64 = __webpack_require__(10)
-var ieee754 = __webpack_require__(21)
-var isArray = __webpack_require__(22)
+var base64 = __webpack_require__(11)
+var ieee754 = __webpack_require__(22)
+var isArray = __webpack_require__(23)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -5295,7 +5295,7 @@ function isnan (val) {
   };
 })(typeof module === 'undefined' || module, this);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(26)(module)))
 
 /***/ },
 /* 2 */
@@ -6044,7 +6044,7 @@ module.exports = {
   }
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(24), __webpack_require__(8)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(25), __webpack_require__(8)))
 
 /***/ },
 /* 5 */
@@ -6280,17 +6280,18 @@ module.exports = g;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {'use strict';
 
-var EthQuery = __webpack_require__(18);
+var EthQuery = __webpack_require__(19);
 var EthFilter = __webpack_require__(6);
-var EthContract = __webpack_require__(13);
-var HttpProvider = __webpack_require__(17);
-var abi = __webpack_require__(11);
+var EthContract = __webpack_require__(14);
+var HttpProvider = __webpack_require__(18);
+var abi = __webpack_require__(12);
 // const getTxSuccess = require('ethjs-transaction-success'); // eslint-disable-line
-var unit = __webpack_require__(20);
+var unit = __webpack_require__(21);
 var keccak256 = __webpack_require__(4).keccak_256;
 var toBN = __webpack_require__(2);
 var BN = __webpack_require__(1);
 var utils = __webpack_require__(3);
+var getTransactionSuccess = __webpack_require__(10);
 
 module.exports = Eth;
 
@@ -6324,6 +6325,7 @@ function Eth(cprovider, options) {
   self.contract = new EthContract(query, self.options.query);
   self.currentProvider = query.rpc.currentProvider;
   self.setProvider = query.setProvider;
+  self.getTransactionSuccess = getTransactionSuccess(self);
 }
 
 Eth.BN = BN;
@@ -6348,6 +6350,51 @@ Eth.HttpProvider = HttpProvider;
 
 /***/ },
 /* 10 */
+/***/ function(module, exports) {
+
+"use strict";
+"use strict";
+
+module.exports = function (eth) {
+  return function (txHash, callback) {
+    var count = 0;
+
+    var timeout = eth.options.timeout || 800000;
+    var interval = eth.options.interval || 7000;
+    var noop = function noop() {};
+    var cb = callback || noop;
+
+    return new Promise(function (resolve, reject) {
+      var txInterval = setInterval(function () {
+        eth.getTransactionReceipt(txHash, function (err, result) {
+          if (err) {
+            clearInterval(txInterval);
+            cb(err, null);
+            reject(err);
+          }
+
+          if (!err && result) {
+            clearInterval(txInterval);
+            cb(null, result);
+            resolve(result);
+          }
+        });
+
+        if (count >= timeout) {
+          clearInterval(txInterval);
+          var errMessage = "Receipt timeout waiting for tx hash: " + txHash;
+          cb(errMessage, null);
+          reject(errMessage);
+        }
+
+        count += interval;
+      }, interval);
+    });
+  };
+};
+
+/***/ },
+/* 11 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -6468,7 +6515,7 @@ function fromByteArray (uint8) {
 
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6476,7 +6523,7 @@ function fromByteArray (uint8) {
 
 /* eslint-disable */
 
-var utils = __webpack_require__(12);
+var utils = __webpack_require__(13);
 var uint256Coder = utils.uint256Coder;
 var coderBoolean = utils.coderBoolean;
 var coderFixedBytes = utils.coderFixedBytes;
@@ -6662,7 +6709,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7086,13 +7133,13 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var abi = __webpack_require__(14); // eslint-disable-line
+var abi = __webpack_require__(15); // eslint-disable-line
 var keccak256 = __webpack_require__(4).keccak_256; // eslint-disable-line
 var EthFilter = __webpack_require__(6); // eslint-disable-line
 var getKeys = __webpack_require__(3).getKeys; // eslint-disable-line
@@ -7254,7 +7301,7 @@ function EthContract(query) {
 module.exports = EthContract;
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7262,7 +7309,7 @@ module.exports = EthContract;
 
 /* eslint-disable */
 
-var utils = __webpack_require__(15);
+var utils = __webpack_require__(16);
 var uint256Coder = utils.uint256Coder;
 var coderBoolean = utils.coderBoolean;
 var coderFixedBytes = utils.coderFixedBytes;
@@ -7448,7 +7495,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7872,13 +7919,13 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0).Buffer))
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var schema = __webpack_require__(23);
+var schema = __webpack_require__(24);
 var util = __webpack_require__(3);
 var numberToBN = __webpack_require__(2);
 var stripHexPrefix = __webpack_require__(5);
@@ -8124,7 +8171,7 @@ module.exports = {
 };
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8139,7 +8186,7 @@ module.exports = {
  */
 
 // workaround to use httpprovider in different envs
-var XHR2 = __webpack_require__(26);
+var XHR2 = __webpack_require__(27);
 
 /*
 ""
@@ -8236,14 +8283,14 @@ HttpProvider.prototype.sendAsync = function (payload, callback) {
 module.exports = HttpProvider;
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var format = __webpack_require__(16);
-var EthRPC = __webpack_require__(19);
+var format = __webpack_require__(17);
+var EthRPC = __webpack_require__(20);
 
 module.exports = Eth;
 
@@ -8341,7 +8388,7 @@ function generateFnFor(method, methodObject) {
 }
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -8423,7 +8470,7 @@ function createPayload(data, id) {
 }
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8597,7 +8644,7 @@ module.exports = {
 };
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -8687,7 +8734,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports) {
 
 var toString = {}.toString;
@@ -8698,7 +8745,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports) {
 
 module.exports = {
@@ -9321,7 +9368,7 @@ module.exports = {
 };
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports) {
 
 // shim for using process in browser
@@ -9507,7 +9554,7 @@ process.umask = function() { return 0; };
 
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports) {
 
 module.exports = function(module) {
@@ -9533,14 +9580,14 @@ module.exports = function(module) {
 
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports) {
 
 module.exports = XMLHttpRequest;
 
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(9);
