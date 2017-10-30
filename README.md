@@ -53,13 +53,13 @@ npm install --save ethjs
 const Eth = require('ethjs');
 const eth = new Eth(new Eth.HttpProvider('https://ropsten.infura.io'));
 
-eth.getBlockByNumber(45300, true, (err, block) => {
+eth.getBlockByNumber(45300, (err, block) => {
   // result null { ...block data... }
 });
 
 const etherValue = Eth.toWei(72, 'ether');
 
-// result <BN: 3e733628714200000>
+// result <BN ...>
 
 const tokenABI = [{
   "constant": true,
@@ -74,6 +74,12 @@ const token = eth.contract(tokenABI).at('0x6e0E0e02377Bc1d90E8a7c21f12BA385C2C35
 
 token.totalSupply().then((totalSupply) => {
   // result <BN ...>  4500000
+});
+
+token.transfer('0x...', 150).then((txHash) => {
+  eth.getTransactionSuccess(txHash).then(txReceipt => {
+    // result <Receipt { hash: '0x...', ... }>
+  });
 });
 ```
 
