@@ -1,3 +1,7 @@
+# 0.3.4 -- getTransactionSuccess
+
+1. Fix RPC unhandled promise rejection.
+
 # 0.2.8 -- getTransactionSuccess
 
 1. Added the very essential getTransactionSuccess method
