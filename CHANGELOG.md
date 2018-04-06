@@ -1,3 +1,7 @@
+# 0.3.6 -- Ethjs-abi update
+
+1. Update ethjs-abi.
+
 # 0.3.5 -- Fix getTransactionSuccess unhandled promise rejection
 
 1. Fix getTx unhandled promise rejection
