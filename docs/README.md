@@ -10,14 +10,14 @@
 
 ### Structure
 
-The [`src/`](../../../tree/master/src) directory contains your entire application code, including JavaScript, and tests.
+The [`src/`](../../../tree/main/src) directory contains your entire application code, including JavaScript, and tests.
 
 The rest of the folders and files only exist to make your life easier, and
 should not need to be touched.
 
 For more in-depth structure, see the developer-guide.md.
 
-*(If they do have to be changed, please [submit an issue](https://github.com/ethjs/ethjs/issues)!)*
+*(If they do have to be changed, please [submit an issue](https://github.com/MetaMask/ethjs/issues)!)*
 
 ### Testing
 

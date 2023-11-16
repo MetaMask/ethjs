@@ -5,13 +5,13 @@ All information regarding contributing to and progressing `ethjs` module can be 
 ## Install
 
 ```
-npm install --save ethjs
+npm install --save @metamask/ethjs
 ```
 
 ## Install from Source
 
 ```
-git clone http://github.com/ethjs/ethjs
+git clone http://github.com/MetaMask/ethjs
 npm install
 ```
 
@@ -67,8 +67,6 @@ All module source code is found in the `src` directory. All module helper script
 Note, the `./lib` dir is generated from the babel build staging. `./coverage` is generated from the `npm run test:coverage` script. All internals and helper scripts (i.e. `webpack`) are in `./internals`. All distribution builds are in `./dist` (usually a minified and unminified production build of the package).
 
 ## NPM Practice
-
-Across all `ethjs-` repos, we enforce version hardening (i.e. "0.0.3" not "^0.0.3"). We want to reduce potential hazardous install changes from dependancies as much as possible to ensure package preformace, testing, security and design. Please make sure all your commits and PR's are version hardend if you are installing or removing new packages.
 
 After build staging it is the `lib` folder which actually gets published to NPM. This allows for easy inclusion into other modules which may not use babel transpiling or which may not support es2015+.
 
