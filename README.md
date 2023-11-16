@@ -1,26 +1,10 @@
 ## ethjs
 
 <div>
-  <!-- Dependency Status -->
-  <a href="https://david-dm.org/ethjs/ethjs">
-    <img src="https://david-dm.org/ethjs/ethjs.svg"
-    alt="Dependency Status" />
-  </a>
-
-  <!-- devDependency Status -->
-  <a href="https://david-dm.org/ethjs/ethjs#info=devDependencies">
-    <img src="https://david-dm.org/ethjs/ethjs/dev-status.svg" alt="devDependency Status" />
-  </a>
-
   <!-- NPM Version -->
-  <a href="https://www.npmjs.org/package/ethjs">
-    <img src="http://img.shields.io/npm/v/ethjs.svg"
+  <a href="https://www.npmjs.org/package/@metamask/ethjs">
+    <img src="http://img.shields.io/npm/v/@metamask/ethjs.svg"
     alt="NPM version" />
-  </a>
-
-  <!-- Javascript Style -->
-  <a href="http://airbnb.io/javascript/">
-    <img src="https://img.shields.io/badge/code%20style-airbnb-brightgreen.svg" alt="js-airbnb-style" />
   </a>
 </div>
 
@@ -33,21 +17,13 @@ Only **106 kB** minified!
 ## Install
 
 ```
-npm install --save ethjs
+npm install --save @metamask/ethjs
 ```
-
-## CDN
-
-```
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/ethjs@0.3.4/dist/ethjs.min.js"></script>
-```
-
-Note, exports to `window.Eth` global.
 
 ## Usage
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('https://ropsten.infura.io'));
 
 eth.getBlockByNumber(45300, true, (err, block) => {
@@ -92,7 +68,6 @@ You'll find more detailed information on using `ethjs` and tailoring it to your 
 
 - [User guide](docs/user-guide.md) - Usage, configuration, FAQ and complementary tools.
 - [Developer guide](docs/developer-guide.md) - Contributing to `ethjs` and writing your own code and coverage.
-- [Examples](http://github.com/ethjs/examples) - Examples of `ethjs` in use.
 
 ## Help out
 
@@ -108,13 +83,13 @@ There is always a lot of work to do, and will have many rules to maintain. So pl
 
 Please consult our [Code of Conduct](CODE_OF_CONDUCT.md) docs before helping out.
 
-We communicate via [issues](https://github.com/ethjs/ethjs/issues) and [pull requests](https://github.com/ethjs/ethjs/pulls).
+We communicate via [issues](https://github.com/MetaMask/ethjs/issues) and [pull requests](https://github.com/MetaMask/ethjs/pulls).
 
 ## Important documents
 
 - [Changelog](CHANGELOG.md)
 - [Code of Conduct](CODE_OF_CONDUCT.md)
-- [License](https://raw.githubusercontent.com/ethjs/ethjs/master/LICENSE)
+- [License](https://raw.githubusercontent.com/MetaMask/ethjs/main/LICENSE)
 
 ## Our Relationship with Ethereum & EthereumJS
 

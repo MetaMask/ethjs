@@ -70,7 +70,7 @@
     }
   },
   "bugs": {
-    "url": "https://github.com/ethjs/ethjs-filter/issues"
+    "url": "https://github.com/MetaMask/ethjs/issues"
   },
   "dependencies": {
     "bn.js": "4.11.6",
@@ -179,7 +179,7 @@
     "lib",
     "src"
   ],
-  "homepage": "https://github.com/ethjs/ethjs-filter#readme",
+  "homepage": "https://github.com/MetaMask/ethjs#readme",
   "keywords": [
     "ethereum",
     "events",
@@ -190,7 +190,7 @@
     "lint:eslint": "*.js"
   },
   "main": "lib/index.js",
-  "name": "ethjs",
+  "name": "@metamask/ethjs",
   "pre-commit": "build",
   "publishConfig": {
     "access": "public",
@@ -198,7 +198,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/ethjs/ethjs.git"
+    "url": "https://github.com/MetaMask/ethjs"
   },
   "scripts": {
     "build": "npm run build:commonjs && npm run test:lib && npm run build:umd && npm run build:umd:min",

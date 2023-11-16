@@ -5,13 +5,13 @@ All information for developers using `ethjs` should consult this document.
 ## Install
 
 ```
-npm install --save ethjs
+npm install --save @metamask/ethjs
 ```
 
 ## Usage
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('https://ropsten.infura.io'));
 
 eth.getBlockByNumber(45300, (err, block) => {
@@ -50,14 +50,14 @@ Thank you for trying out `ethjs`! A highly optimized light-weight JS utiltity fo
 
 `ethjs` is made from a series of smaller modules:
 
-  - [`ethjs-query`](http://github.com/ethjs/ethjs-query) for querying the RPC layer
-  - [`ethjs-format`](http://github.com/ethjs/ethjs-format) for formatting RPC payloads to and from the nodes
-  - [`ethjs-contract`](http://github.com/ethjs/ethjs-contract) for handling contracts
-  - [`ethjs-abi`](http://github.com/ethjs/ethjs-abi) for handling contract data encoding and decoding
-  - [`ethjs-filter`](http://github.com/ethjs/ethjs-filter) for handling filters and events
-  - [`ethjs-unit`](http://github.com/ethjs/ethjs-unit) for handling Ethereum currency unit conversion
-  - [`ethjs-util`](http://github.com/ethjs/ethjs-util) general utiltity methods
-  - [`ethjs-provider-http`](http://github.com/ethjs/ethjs-provider-http) a simple XHR http provider
+  - [`@metamask/ethjs-query`](https://github.com/MetaMask/ethjs-query) for querying the RPC layer
+  - [`@metamask/ethjs-format`](https://github.com/MetaMask/ethjs-format) for formatting RPC payloads to and from the nodes
+  - [`@metamask/ethjs-contract`](https://github.com/MetaMask/ethjs-contract) for handling contracts
+  - [`@metamask/ethjs-abi`](https://github.com/MetaMask/ethjs-abi) for handling contract data encoding and decoding
+  - [`@metamask/ethjs-filter`](https://github.com/MetaMask/ethjs-filter) for handling filters and events
+  - [`@metamask/ethjs-unit`](https://github.com/MetaMask/ethjs-unit) for handling Ethereum currency unit conversion
+  - [`@metamask/ethjs-util`](https://github.com/MetaMask/ethjs-util) general utiltity methods
+  - [`@metamask/ethjs-provider-http`](https://github.com/MetaMask/ethjs-provider-http) a simple XHR http provider
 
 ## Concepts
 
@@ -88,7 +88,7 @@ Which derives to this Ethereum **address**:
 0xBd151ceB123dcba8C27Ad0769B8B9C11aFc69CC2
 ```
 
-See: [`ethjs-account`](https://github.com/ethjs/ethjs-account), [`eth-lightwallet`](https://github.com/ConsenSys/eth-lightwallet), or the [`Ethereum Whitepaper`](https://github.com/ethereum/wiki/wiki/White-Paper#ethereum) for more details.
+See: [`ethjs-account`](https://github.com/MetaMask/ethjs-account), [`eth-lightwallet`](https://github.com/ConsenSys/eth-lightwallet), or the [`Ethereum Whitepaper`](https://github.com/ethereum/wiki/wiki/White-Paper#ethereum) for more details.
 
 Note, there is a [**difference**](https://www.reddit.com/r/ethereum/comments/470s3q/vitalik_made_a_very_clever_backwards_compatible/) between Ethereum `checksum` addresses (i.e. `0xBd151ceB123dcba8C27Ad0769B8B9C11aFc69CC2`), and non-checksum addresses (i.e. `0xbd151ceb123dcba8c27ad0769b8b9c11afc69cc2`).
 
@@ -102,7 +102,7 @@ See: [`Ethereum Whitepaper`](https://github.com/ethereum/wiki/wiki/White-Paper#m
 
 Ethereum contracts or `smart-contracts` are computational code stored on the Ethereum blockchain. Contracts can be written in a higher level language like [Solidity](https://solidity.readthedocs.io/en/develop/) which then compiles down into EVM (Ethereum Virtual Machine) bytecode that can be stored on the chain. To use or deploy these contracts with `ethjs` you need the **ABI** and (if your deploying) the **bytecode** or (if your just using it) the **address**. Contracts can be designed to send and receive, process and store data and `ether` from other `accounts` or `contracts`. `ethjs` provides a `eth.contract` object to help you interact with and deploy Ethereum contracts (its design is very similar to its `web3.js` counterpart).
 
-See: [`Browser-Solidity`](https://ethereum.github.io/browser-solidity/) an in browser Solidity IDE for building contracts, [`Solidity Read The Docs`](https://solidity.readthedocs.io/en/develop/), [`ethjs-contract`](https://github.com/ethjs/ethjs-contract), [`Ethereum Whitepaper`](https://github.com/ethereum/wiki/wiki/White-Paper#applications). Note, this will actually provide you with the necessary contract `bytecode` and `ABI` required to deploy and use the contracts.
+See: [`Remix IDE`](http://remix.ethereum.org) an in browser Solidity IDE for building contracts, [`Solidity Read The Docs`](https://solidity.readthedocs.io/en/develop/), [`ethjs-contract`](https://github.com/MetaMask/ethjs-contract), [`Ethereum Whitepaper`](https://github.com/ethereum/wiki/wiki/White-Paper#applications). Note, this will actually provide you with the necessary contract `bytecode` and `ABI` required to deploy and use the contracts.
 
 ### Transactions/vs Calls
 
@@ -118,7 +118,7 @@ See: [`Etherscan Testnet Blockchain Explorer`](http://testnet.etherscan.io/)
 
 ### Chain Services
 
-There are many services available to help connect you or your app to the Ethereum testnet or mainnet. [infura](https://www.infura.io/) is one constantly referenced by `ethjs` examples. Currently, it allows anyone to access its scalable node cluster for free over an HTTPS connection. You can connect to the infura testnet by using the [`HTTP provider`](https://github.com/ethjs/ethjs-provider-http) with the host set to either: `https://ropsten.infura.io` or mainnet by using `https://mainnet.infura.io`. Note, if you use infura, you need to do your own account handling and signing of transactions.
+There are many services available to help connect you or your app to the Ethereum testnet or mainnet. [infura](https://www.infura.io/) is one constantly referenced by `ethjs` examples. Currently, it allows anyone to access its scalable node cluster for free over an HTTPS connection. You can connect to the infura testnet by using the [`HTTP provider`](https://github.com/MetaMask/ethjs-provider-http) with the host set to either: `https://ropsten.infura.io` or mainnet by using `https://mainnet.infura.io`. Note, if you use infura, you need to do your own account handling and signing of transactions.
 
 See: [`Infura.io`](https://www.infura.io/)
 
@@ -138,7 +138,7 @@ See: [`Ethereum RPC Specification`](https://github.com/ethereum/wiki/wiki/JSON-R
 
 `ethjs` provides facility to manage events and filters. Filters are simple mechanisms to listen for changes on the blockchain. Contracts can also dispatch custom events.
 
-See: [`ethjs-filter`](https://github.com/ethjs/ethjs-filter), [`Ethereum RPC Specification`](https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_newfilter)
+See: [`ethjs-filter`](https://github.com/MetaMask/ethjs-filter), [`Ethereum RPC Specification`](https://github.com/ethereum/wiki/wiki/JSON-RPC#eth_newfilter)
 
 ## Asynchronous Only
 
@@ -241,7 +241,7 @@ The BN object comes equip with numerous mathamatical operators and methods.
 
 ### eth.contract
 
-[index.js:ethjs-contract](../../../blob/master/src/index.js "Source code on GitHub")
+[index.js:ethjs-contract](../../../blob/main/src/index.js "Source code on GitHub")
 
 Intakes the contract Ethereum standard ABI schema, optionally the contract bytecode and default transaction object. Outputs a `ContractFactory` instance for the contract.
 
@@ -254,7 +254,7 @@ Intakes the contract Ethereum standard ABI schema, optionally the contract bytec
 Result `ContractFactory` **Object**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 // the abi
@@ -282,7 +282,7 @@ eth.accounts().then((accounts) => {
 
 ### ContractFactory.new
 
-[index.js:ethjs-contract](../../../blob/master/src/index.js "Source code on GitHub")
+[index.js:ethjs-contract](../../../blob/main/src/index.js "Source code on GitHub")
 
 The contract factory has two methods, 'at' and 'new' which can be used to create the contract instance. The `at` method is used to create a `Contract` instance for a contract that has already been deployed to the Ethereum blockchain (testnet, livenet, local or otherwise). The `new` method is used to deploy the contract to the current chain.
 
@@ -296,7 +296,7 @@ Result a single Promise **Object** instance.
 
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 // the abi
@@ -321,7 +321,7 @@ eth.accounts().then((accounts) => {
 
 ### ContractFactory.at
 
-[index.js:ethjs-contract](../../../blob/master/src/index.js "Source code on GitHub")
+[index.js:ethjs-contract](../../../blob/main/src/index.js "Source code on GitHub")
 
 The contract factory has two methods, 'at' and 'new' which can be used to create the `Contract` instance.
 
@@ -332,7 +332,7 @@ The contract factory has two methods, 'at' and 'new' which can be used to create
 Result a single `Contract` **Object** instance.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 // the abi
@@ -360,7 +360,7 @@ eth.accounts().then((accounts) => {
 
 ### Contract (Instance)
 
-[index.js:ethjs-contract](../../../blob/master/src/index.js "Source code on GitHub")
+[index.js:ethjs-contract](../../../blob/main/src/index.js "Source code on GitHub")
 
 The contract instance is meant to simulate a deployed Ethereum contract interface as a javascript object. All specified call methods are attached to this object (as specified by the contract ABI schema array).
 
@@ -377,7 +377,7 @@ In this contract, the `SetComplete` event is fired when the `set` method has set
 You will notice the `simpleStore` instance makes all these methods available to it.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 // the abi
@@ -420,7 +420,7 @@ eth.accounts().then((accounts) => {
 
 ### Eth.toWei
 
-[index.js:ethjs-unit](../../../blob/master/src/index.js "Source code on GitHub")
+[index.js:ethjs-unit](../../../blob/main/src/index.js "Source code on GitHub")
 
 Convert a single Ethereum denominated value at a specified unit, and convert it to its `wei` value. Intakes a `value` and `unit` specifier, outputs a single wei value `BN` object.
 
@@ -432,7 +432,7 @@ Convert a single Ethereum denominated value at a specified unit, and convert it 
 Result output single BN **Object**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 
 var val1 = Eth.toWei(249824778, 'ether');
 
@@ -441,7 +441,7 @@ var val1 = Eth.toWei(249824778, 'ether');
 
 ### Eth.fromWei
 
-[index.js:ethjs-unit](../../../blob/master/src/index.js "Source code on GitHub")
+[index.js:ethjs-unit](../../../blob/main/src/index.js "Source code on GitHub")
 
 Convert a wei denominated value into another Ethereum denomination. Intakes a single wei `value` and outputs a BN object.
 
@@ -453,7 +453,7 @@ Convert a wei denominated value into another Ethereum denomination. Intakes a si
 Result output single **String** number.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 
 var val1 = Eth.fromWei(249824778000000000000000000, 'ether');
 
@@ -462,7 +462,7 @@ var val1 = Eth.fromWei(249824778000000000000000000, 'ether');
 
 ### Eth.HttpProvider
 
-[index.js:ethjs-provider-http](../../../blob/master/src/index.js "Source code on GitHub")
+[index.js:ethjs-provider-http](../../../blob/main/src/index.js "Source code on GitHub")
 
 Intakes a `provider` URL specified as a string, and optionally the `timeout` specified as a Number, outputs a web3 standard `HttpProvider` object.
 
@@ -474,7 +474,7 @@ Intakes a `provider` URL specified as a string, and optionally the `timeout` spe
 Result `HttpProvider` **Object**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.accounts((err, result) => {
@@ -484,7 +484,7 @@ eth.accounts((err, result) => {
 
 ### Eth.keccak256
 
-[index.js:keccak256](../../../blob/master/src/index.js "Source code on GitHub")
+[index.js:keccak256](../../../blob/main/src/index.js "Source code on GitHub")
 
 Intakes a single string and outputs a 32 byte (66 utf-8 byte) sha3 Keccak hex string or optionally a Buffer object.
 
@@ -495,7 +495,7 @@ Intakes a single string and outputs a 32 byte (66 utf-8 byte) sha3 Keccak hex st
 Result output hex **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 
 console.log(Eth.keccak256('skfjksdfjksdjksd'));
 
@@ -504,12 +504,12 @@ console.log(Eth.keccak256('skfjksdfjksdjksd'));
 
 ### eth.filter
 
-[index.js:filter](../../../blob/master/src/index.js "Source code on GitHub")
+[index.js:filter](../../../blob/main/src/index.js "Source code on GitHub")
 
 Used to manage Ethereum event listening and filtering.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new HttpProvider('http://localhost:8545'));
 
 const filter = new eth.filters.Filter({ delay: 300 })
@@ -559,7 +559,7 @@ filter.uninstall()
 
 ### eth.web3_clientVersion
 
-[index.js:web3_clientVersion](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:web3_clientVersion](../../../blob/main/src/index.js Source code on GitHub")
 
 The web3 client version.
 
@@ -570,7 +570,7 @@ none.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.web3_clientVersion()
@@ -589,7 +589,7 @@ eth.web3_clientVersion()
 
 ### eth.web3_sha3
 
-[index.js:web3_sha3](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:web3_sha3](../../../blob/main/src/index.js Source code on GitHub")
 
 The keccak 256 sha3 hash of the data.
 
@@ -601,7 +601,7 @@ The keccak 256 sha3 hash of the data.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.web3_sha3("0.1.6")
@@ -620,7 +620,7 @@ eth.web3_sha3("0.1.6")
 
 ### eth.net_version
 
-[index.js:net_version](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:net_version](../../../blob/main/src/index.js Source code on GitHub")
 
 The net version from the node.
 
@@ -631,7 +631,7 @@ none.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.net_version()
@@ -650,7 +650,7 @@ eth.net_version()
 
 ### eth.net_peerCount
 
-[index.js:net_peerCount](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:net_peerCount](../../../blob/main/src/index.js Source code on GitHub")
 
 The total network peer count of the node.
 
@@ -661,7 +661,7 @@ none.
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.net_peerCount()
@@ -680,7 +680,7 @@ eth.net_peerCount()
 
 ### eth.net_listening
 
-[index.js:net_listening](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:net_listening](../../../blob/main/src/index.js Source code on GitHub")
 
 Is the node listening to the network.
 
@@ -691,7 +691,7 @@ none.
 Result **Boolean**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.net_listening()
@@ -710,7 +710,7 @@ eth.net_listening()
 
 ### eth.protocolVersion
 
-[index.js:eth_protocolVersion](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_protocolVersion](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the current ethereum protocol version.
 
@@ -721,7 +721,7 @@ none.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.protocolVersion()
@@ -740,7 +740,7 @@ eth.protocolVersion()
 
 ### eth.syncing
 
-[index.js:eth_syncing](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_syncing](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns an object with data about the sync status or 'false'.
 
@@ -751,7 +751,7 @@ none.
 Result **"Boolean|EthSyncing"**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.syncing()
@@ -770,7 +770,7 @@ eth.syncing()
 
 ### eth.coinbase
 
-[index.js:eth_coinbase](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_coinbase](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the client coinbase address.
 
@@ -781,7 +781,7 @@ none.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.coinbase()
@@ -800,7 +800,7 @@ eth.coinbase()
 
 ### eth.mining
 
-[index.js:eth_mining](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_mining](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns 'true' if client is actively mining new blocks.
 
@@ -811,7 +811,7 @@ none.
 Result **Boolean**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.mining()
@@ -830,7 +830,7 @@ eth.mining()
 
 ### eth.hashrate
 
-[index.js:eth_hashrate](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_hashrate](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the number of hashes per second that the node is mining with.
 
@@ -841,7 +841,7 @@ none.
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.hashrate()
@@ -860,7 +860,7 @@ eth.hashrate()
 
 ### eth.gasPrice
 
-[index.js:eth_gasPrice](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_gasPrice](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the current price per gas in wei.
 
@@ -871,7 +871,7 @@ none.
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.gasPrice()
@@ -890,7 +890,7 @@ eth.gasPrice()
 
 ### eth.accounts
 
-[index.js:eth_accounts](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_accounts](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns a list of addresses owned by client.
 
@@ -901,7 +901,7 @@ none.
 Result an **Array** of strings.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.accounts()
@@ -920,7 +920,7 @@ eth.accounts()
 
 ### eth.blockNumber
 
-[index.js:eth_blockNumber](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_blockNumber](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the number of most recent block.
 
@@ -931,7 +931,7 @@ none.
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.blockNumber()
@@ -950,7 +950,7 @@ eth.blockNumber()
 
 ### eth.getBalance
 
-[index.js:eth_getBalance](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getBalance](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the balance of the account of given address.
 
@@ -963,7 +963,7 @@ Returns the balance of the account of given address.
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getBalance("0x6e0E0e02377Bc1d90E8a7c21f12BA385C2C35f78", <BN ...>)
@@ -982,7 +982,7 @@ eth.getBalance("0x6e0E0e02377Bc1d90E8a7c21f12BA385C2C35f78", <BN ...>)
 
 ### eth.getStorageAt
 
-[index.js:eth_getStorageAt](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getStorageAt](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the value from a storage position at a given address.
 
@@ -996,7 +996,7 @@ Returns the value from a storage position at a given address.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getStorageAt("0x6e0E0e02377Bc1d90E8a7c21f12BA385C2C35f78", <BN ...>, <BN ...>)
@@ -1015,7 +1015,7 @@ eth.getStorageAt("0x6e0E0e02377Bc1d90E8a7c21f12BA385C2C35f78", <BN ...>, <BN ...
 
 ### eth.getTransactionCount
 
-[index.js:eth_getTransactionCount](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getTransactionCount](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the number of transactions *sent* from an address.
 
@@ -1028,7 +1028,7 @@ Returns the number of transactions *sent* from an address.
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getTransactionCount("0x6e0E0e02377Bc1d90E8a7c21f12BA385C2C35f78", <BN ...>)
@@ -1047,7 +1047,7 @@ eth.getTransactionCount("0x6e0E0e02377Bc1d90E8a7c21f12BA385C2C35f78", <BN ...>)
 
 ### eth.getBlockTransactionCountByHash
 
-[index.js:eth_getBlockTransactionCountByHash](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getBlockTransactionCountByHash](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the number of transactions in a block from a block matching the given block hash.
 
@@ -1059,7 +1059,7 @@ Returns the number of transactions in a block from a block matching the given bl
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getBlockTransactionCountByHash("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbab45")
@@ -1078,7 +1078,7 @@ eth.getBlockTransactionCountByHash("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa95
 
 ### eth.getBlockTransactionCountByNumber
 
-[index.js:eth_getBlockTransactionCountByNumber](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getBlockTransactionCountByNumber](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the number of transactions in a block from a block matching the given block number.
 
@@ -1090,7 +1090,7 @@ Returns the number of transactions in a block from a block matching the given bl
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getBlockTransactionCountByNumber(<BN ...>)
@@ -1109,7 +1109,7 @@ eth.getBlockTransactionCountByNumber(<BN ...>)
 
 ### eth.getUncleCountByBlockHash
 
-[index.js:eth_getUncleCountByBlockHash](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getUncleCountByBlockHash](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the number of uncles in a block from a block matching the given block hash.
 
@@ -1121,7 +1121,7 @@ Returns the number of uncles in a block from a block matching the given block ha
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getUncleCountByBlockHash("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbab45")
@@ -1140,7 +1140,7 @@ eth.getUncleCountByBlockHash("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a681
 
 ### eth.getUncleCountByBlockNumber
 
-[index.js:eth_getUncleCountByBlockNumber](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getUncleCountByBlockNumber](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the number of uncles in a block from a block matching the given block number.
 
@@ -1152,7 +1152,7 @@ Returns the number of uncles in a block from a block matching the given block nu
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getUncleCountByBlockNumber(<BN ...>)
@@ -1171,7 +1171,7 @@ eth.getUncleCountByBlockNumber(<BN ...>)
 
 ### eth.getCode
 
-[index.js:eth_getCode](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getCode](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns code at a given address.
 
@@ -1184,7 +1184,7 @@ Returns code at a given address.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getCode("0x6e0E0e02377Bc1d90E8a7c21f12BA385C2C35f78", <BN ...>)
@@ -1203,7 +1203,7 @@ eth.getCode("0x6e0E0e02377Bc1d90E8a7c21f12BA385C2C35f78", <BN ...>)
 
 ### eth.sign
 
-[index.js:eth_sign](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_sign](../../../blob/main/src/index.js Source code on GitHub")
 
 Signs data with a given address.
 
@@ -1216,7 +1216,7 @@ Signs data with a given address.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.sign("0x6e0E0e02377Bc1d90E8a7c21f12BA385C2C35f78", "0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbab45")
@@ -1235,7 +1235,7 @@ eth.sign("0x6e0E0e02377Bc1d90E8a7c21f12BA385C2C35f78", "0xbf2b4596cbd1511f4a6ef8
 
 ### eth.sendTransaction
 
-[index.js:eth_sendTransaction](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_sendTransaction](../../../blob/main/src/index.js Source code on GitHub")
 
 Creates new message call transaction or a contract creation, if the data field contains code.
 
@@ -1247,7 +1247,7 @@ Creates new message call transaction or a contract creation, if the data field c
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.sendTransaction({
@@ -1272,7 +1272,7 @@ eth.sendTransaction({
 
 ### eth.sendRawTransaction
 
-[index.js:eth_sendRawTransaction](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_sendRawTransaction](../../../blob/main/src/index.js Source code on GitHub")
 
 Creates new message call transaction or a contract creation for signed transactions.
 
@@ -1284,7 +1284,7 @@ Creates new message call transaction or a contract creation for signed transacti
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.sendRawTransaction("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbabd40cb8da3")
@@ -1303,7 +1303,7 @@ eth.sendRawTransaction("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93
 
 ### eth.call
 
-[index.js:eth_call](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_call](../../../blob/main/src/index.js Source code on GitHub")
 
 Executes a new message call immediately without creating a transaction on the block chain.
 
@@ -1316,7 +1316,7 @@ Executes a new message call immediately without creating a transaction on the bl
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.call({
@@ -1341,7 +1341,7 @@ eth.call({
 
 ### eth.estimateGas
 
-[index.js:eth_estimateGas](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_estimateGas](../../../blob/main/src/index.js Source code on GitHub")
 
 Makes a call or transaction, which won't be added to the blockchain and returns the used gas, which can be used for estimating the used gas.
 
@@ -1354,7 +1354,7 @@ Makes a call or transaction, which won't be added to the blockchain and returns 
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.estimateGas({
@@ -1378,7 +1378,7 @@ eth.estimateGas({
 
 ### eth.getBlockByHash
 
-[index.js:eth_getBlockByHash](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getBlockByHash](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns information about a block by hash.
 
@@ -1391,7 +1391,7 @@ Returns information about a block by hash.
 Result Block **Object**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getBlockByHash("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbab45", true)
@@ -1430,7 +1430,7 @@ eth.getBlockByHash("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bc
 
 ### eth.getBlockByNumber
 
-[index.js:eth_getBlockByNumber](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getBlockByNumber](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns information about a block by block number.
 
@@ -1443,7 +1443,7 @@ Returns information about a block by block number.
 Result Block **Object**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getBlockByNumber(<BN ...>, true)
@@ -1482,7 +1482,7 @@ eth.getBlockByNumber(<BN ...>, true)
 
 ### eth.getTransactionByHash
 
-[index.js:eth_getTransactionByHash](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getTransactionByHash](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the information about a transaction requested by transaction hash.
 
@@ -1494,7 +1494,7 @@ Returns the information about a transaction requested by transaction hash.
 Result Transaction **Object**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getTransactionByHash("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbab45")
@@ -1525,7 +1525,7 @@ eth.getTransactionByHash("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f
 
 ### eth.getTransactionByBlockHashAndIndex
 
-[index.js:eth_getTransactionByBlockHashAndIndex](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getTransactionByBlockHashAndIndex](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns information about a transaction by block hash and transaction index position.
 
@@ -1538,7 +1538,7 @@ Returns information about a transaction by block hash and transaction index posi
 Result Transaction **Object**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getTransactionByBlockHashAndIndex("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbab45", <BN ...>)
@@ -1569,7 +1569,7 @@ eth.getTransactionByBlockHashAndIndex("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8a
 
 ### eth.getTransactionByBlockNumberAndIndex
 
-[index.js:eth_getTransactionByBlockNumberAndIndex](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getTransactionByBlockNumberAndIndex](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns information about a transaction by block number and transaction index position.
 
@@ -1582,7 +1582,7 @@ Returns information about a transaction by block number and transaction index po
 Result Transaction **Object**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getTransactionByBlockNumberAndIndex(<BN ...>, <BN ...>)
@@ -1613,7 +1613,7 @@ eth.getTransactionByBlockNumberAndIndex(<BN ...>, <BN ...>)
 
 ### eth.getTransactionReceipt
 
-[index.js:eth_getTransactionReceipt](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getTransactionReceipt](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the receipt of a transaction by transaction hash.
 
@@ -1625,7 +1625,7 @@ Returns the receipt of a transaction by transaction hash.
 Result receipt **Object**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getTransactionReceipt("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbab45")
@@ -1662,7 +1662,7 @@ eth.getTransactionReceipt("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6
 
 ### eth.getUncleByBlockHashAndIndex
 
-[index.js:eth_getUncleByBlockHashAndIndex](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getUncleByBlockHashAndIndex](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns information about a uncle of a block by hash and uncle index position.
 
@@ -1675,7 +1675,7 @@ Returns information about a uncle of a block by hash and uncle index position.
 Result Block **Object**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getUncleByBlockHashAndIndex("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbab45", <BN ...>)
@@ -1714,7 +1714,7 @@ eth.getUncleByBlockHashAndIndex("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a
 
 ### eth.getUncleByBlockNumberAndIndex
 
-[index.js:eth_getUncleByBlockNumberAndIndex](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getUncleByBlockNumberAndIndex](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns information about a uncle of a block by number and uncle index position.
 
@@ -1727,7 +1727,7 @@ Returns information about a uncle of a block by number and uncle index position.
 Result Block **Object**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getUncleByBlockNumberAndIndex(<BN ...>, <BN ...>)
@@ -1766,7 +1766,7 @@ eth.getUncleByBlockNumberAndIndex(<BN ...>, <BN ...>)
 
 ### eth.getCompilers
 
-[index.js:eth_getCompilers](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getCompilers](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns a list of available compilers in the client.
 
@@ -1777,7 +1777,7 @@ none.
 Result an **Array** of strings.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getCompilers()
@@ -1796,7 +1796,7 @@ eth.getCompilers()
 
 ### eth.compileLLL
 
-[index.js:eth_compileLLL](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_compileLLL](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns compiled LLL code.
 
@@ -1808,7 +1808,7 @@ Returns compiled LLL code.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.compileLLL("0.1.6")
@@ -1827,7 +1827,7 @@ eth.compileLLL("0.1.6")
 
 ### eth.compileSolidity
 
-[index.js:eth_compileSolidity](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_compileSolidity](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns compiled solidity code.
 
@@ -1839,7 +1839,7 @@ Returns compiled solidity code.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.compileSolidity("0.1.6")
@@ -1858,7 +1858,7 @@ eth.compileSolidity("0.1.6")
 
 ### eth.compileSerpent
 
-[index.js:eth_compileSerpent](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_compileSerpent](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns compiled serpent code.
 
@@ -1870,7 +1870,7 @@ Returns compiled serpent code.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.compileSerpent("0.1.6")
@@ -1889,7 +1889,7 @@ eth.compileSerpent("0.1.6")
 
 ### eth.newFilter
 
-[index.js:eth_newFilter](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_newFilter](../../../blob/main/src/index.js Source code on GitHub")
 
 Creates a filter object, based on filter options, to notify when the state changes (logs).
 
@@ -1901,7 +1901,7 @@ Creates a filter object, based on filter options, to notify when the state chang
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.newFilter({
@@ -1925,7 +1925,7 @@ eth.newFilter({
 
 ### eth.newBlockFilter
 
-[index.js:eth_newBlockFilter](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_newBlockFilter](../../../blob/main/src/index.js Source code on GitHub")
 
 Creates a filter in the node, to notify when a new block arrives.
 
@@ -1936,7 +1936,7 @@ none.
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.newBlockFilter()
@@ -1955,7 +1955,7 @@ eth.newBlockFilter()
 
 ### eth.newPendingTransactionFilter
 
-[index.js:eth_newPendingTransactionFilter](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_newPendingTransactionFilter](../../../blob/main/src/index.js Source code on GitHub")
 
 Creates a filter in the node, to notify when new pending transactions arrive.
 
@@ -1966,7 +1966,7 @@ none.
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.newPendingTransactionFilter()
@@ -1985,7 +1985,7 @@ eth.newPendingTransactionFilter()
 
 ### eth.uninstallFilter
 
-[index.js:eth_uninstallFilter](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_uninstallFilter](../../../blob/main/src/index.js Source code on GitHub")
 
 Uninstalls a filter with given id. Should always be called when watch is no longer needed.
 
@@ -1997,7 +1997,7 @@ Uninstalls a filter with given id. Should always be called when watch is no long
 Result **Boolean**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.uninstallFilter(<BN ...>)
@@ -2016,7 +2016,7 @@ eth.uninstallFilter(<BN ...>)
 
 ### eth.getFilterChanges
 
-[index.js:eth_getFilterChanges](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getFilterChanges](../../../blob/main/src/index.js Source code on GitHub")
 
 Polling method for a filter, which returns an array of logs which occurred since last poll.
 
@@ -2028,7 +2028,7 @@ Polling method for a filter, which returns an array of logs which occurred since
 Result an **Array** of filter change objects..
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getFilterChanges(<BN ...>)
@@ -2057,7 +2057,7 @@ eth.getFilterChanges(<BN ...>)
 
 ### eth.getFilterLogs
 
-[index.js:eth_getFilterLogs](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getFilterLogs](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns an array of all logs matching filter with given id.
 
@@ -2069,7 +2069,7 @@ Returns an array of all logs matching filter with given id.
 Result an **Array** of filter change objects..
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getFilterLogs(<BN ...>)
@@ -2098,7 +2098,7 @@ eth.getFilterLogs(<BN ...>)
 
 ### eth.getLogs
 
-[index.js:eth_getLogs](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getLogs](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns an array of all logs matching a given filter object.
 
@@ -2110,7 +2110,7 @@ Returns an array of all logs matching a given filter object.
 Result **Array**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getLogs({
@@ -2144,7 +2144,7 @@ eth.getLogs({
 
 ### eth.getWork
 
-[index.js:eth_getWork](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_getWork](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the hash of the current block, the seedHash, and the boundary condition to be met ("target").
 
@@ -2155,7 +2155,7 @@ none.
 Result an **Array** of strings.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.getWork()
@@ -2174,7 +2174,7 @@ eth.getWork()
 
 ### eth.submitWork
 
-[index.js:eth_submitWork](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_submitWork](../../../blob/main/src/index.js Source code on GitHub")
 
 Used for submitting a proof-of-work solution.
 
@@ -2188,7 +2188,7 @@ Used for submitting a proof-of-work solution.
 Result **Boolean**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.submitWork("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbabd40cb8da3", "0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbab45", "0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbab45")
@@ -2207,7 +2207,7 @@ eth.submitWork("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbab
 
 ### eth.submitHashrate
 
-[index.js:eth_submitHashrate](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:eth_submitHashrate](../../../blob/main/src/index.js Source code on GitHub")
 
 Used for submitting mining hashrate.
 
@@ -2220,7 +2220,7 @@ Used for submitting mining hashrate.
 Result **Boolean**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.submitHashrate("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbabd40cb8da3", "0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbabd40cb8da3")
@@ -2239,7 +2239,7 @@ eth.submitHashrate("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bc
 
 ### eth.db_putString
 
-[index.js:db_putString](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:db_putString](../../../blob/main/src/index.js Source code on GitHub")
 
 Stores a string in the local database.
 
@@ -2253,7 +2253,7 @@ Stores a string in the local database.
 Result **Boolean**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.db_putString("0.1.6", "0.1.6", "0.1.6")
@@ -2272,7 +2272,7 @@ eth.db_putString("0.1.6", "0.1.6", "0.1.6")
 
 ### eth.db_getString
 
-[index.js:db_getString](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:db_getString](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns string from the local database.
 
@@ -2285,7 +2285,7 @@ Returns string from the local database.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.db_getString("0.1.6", "0.1.6")
@@ -2304,7 +2304,7 @@ eth.db_getString("0.1.6", "0.1.6")
 
 ### eth.db_putHex
 
-[index.js:db_putHex](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:db_putHex](../../../blob/main/src/index.js Source code on GitHub")
 
 Stores binary data in the local database.
 
@@ -2318,7 +2318,7 @@ Stores binary data in the local database.
 Result **Boolean**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.db_putHex("0.1.6", "0.1.6", "0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbabd40cb8da3")
@@ -2337,7 +2337,7 @@ eth.db_putHex("0.1.6", "0.1.6", "0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a
 
 ### eth.db_getHex
 
-[index.js:db_getHex](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:db_getHex](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns binary data from the local database.
 
@@ -2350,7 +2350,7 @@ Returns binary data from the local database.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.db_getHex("0.1.6", "0.1.6")
@@ -2369,7 +2369,7 @@ eth.db_getHex("0.1.6", "0.1.6")
 
 ### eth.shh_post
 
-[index.js:shh_post](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:shh_post](../../../blob/main/src/index.js Source code on GitHub")
 
 Sends a whisper message.
 
@@ -2381,7 +2381,7 @@ Sends a whisper message.
 Result **Boolean**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.shh_post({
@@ -2407,7 +2407,7 @@ eth.shh_post({
 
 ### eth.shh_version
 
-[index.js:shh_version](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:shh_version](../../../blob/main/src/index.js Source code on GitHub")
 
 Returns the current whisper protocol version.
 
@@ -2418,7 +2418,7 @@ none.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.shh_version()
@@ -2437,7 +2437,7 @@ eth.shh_version()
 
 ### eth.shh_newIdentity
 
-[index.js:shh_newIdentity](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:shh_newIdentity](../../../blob/main/src/index.js Source code on GitHub")
 
 Creates new whisper identity in the client.
 
@@ -2448,7 +2448,7 @@ none.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.shh_newIdentity()
@@ -2467,7 +2467,7 @@ eth.shh_newIdentity()
 
 ### eth.shh_hasIdentity
 
-[index.js:shh_hasIdentity](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:shh_hasIdentity](../../../blob/main/src/index.js Source code on GitHub")
 
 Checks if the client hold the private keys for a given identity.
 
@@ -2479,7 +2479,7 @@ Checks if the client hold the private keys for a given identity.
 Result **Boolean**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.shh_hasIdentity("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbabd40cb8da3")
@@ -2498,7 +2498,7 @@ eth.shh_hasIdentity("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8b
 
 ### eth.shh_newGroup
 
-[index.js:shh_newGroup](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:shh_newGroup](../../../blob/main/src/index.js Source code on GitHub")
 
 Creates a new SHH group.
 
@@ -2509,7 +2509,7 @@ none.
 Result **String**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.shh_newGroup()
@@ -2528,7 +2528,7 @@ eth.shh_newGroup()
 
 ### eth.shh_addToGroup
 
-[index.js:shh_addToGroup](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:shh_addToGroup](../../../blob/main/src/index.js Source code on GitHub")
 
 Adds an identity to an SHH group.
 
@@ -2540,7 +2540,7 @@ Adds an identity to an SHH group.
 Result **Boolean**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.shh_addToGroup("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bccbabd40cb8da3")
@@ -2559,7 +2559,7 @@ eth.shh_addToGroup("0xbf2b4596cbd1511f4a6ef8af06d03354f53cb8aa9508a6810b6f93d8bc
 
 ### eth.shh_newFilter
 
-[index.js:shh_newFilter](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:shh_newFilter](../../../blob/main/src/index.js Source code on GitHub")
 
 Creates filter to notify, when client receives whisper message matching the filter options.
 
@@ -2571,7 +2571,7 @@ Creates filter to notify, when client receives whisper message matching the filt
 Result **BN**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.shh_newFilter({
@@ -2593,7 +2593,7 @@ eth.shh_newFilter({
 
 ### eth.shh_uninstallFilter
 
-[index.js:shh_uninstallFilter](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:shh_uninstallFilter](../../../blob/main/src/index.js Source code on GitHub")
 
 Uninstalls a filter with given id. Should always be called when watch is no longer needed.
 
@@ -2605,7 +2605,7 @@ Uninstalls a filter with given id. Should always be called when watch is no long
 Result **Boolean**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.shh_uninstallFilter(<BN ...>)
@@ -2624,7 +2624,7 @@ eth.shh_uninstallFilter(<BN ...>)
 
 ### eth.shh_getFilterChanges
 
-[index.js:shh_getFilterChanges](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:shh_getFilterChanges](../../../blob/main/src/index.js Source code on GitHub")
 
 Polling method for whisper filters. Returns new messages since the last call of this method.
 
@@ -2636,7 +2636,7 @@ Polling method for whisper filters. Returns new messages since the last call of 
 Result **["SHHFilterChange"]**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.shh_getFilterChanges(<BN ...>)
@@ -2665,7 +2665,7 @@ eth.shh_getFilterChanges(<BN ...>)
 
 ### eth.shh_getMessages
 
-[index.js:shh_getMessages](../../../blob/master/src/index.js Source code on GitHub")
+[index.js:shh_getMessages](../../../blob/main/src/index.js Source code on GitHub")
 
 Get all messages matching a filter. Unlike 'shh_getFilterChanges' this returns all messages.
 
@@ -2677,7 +2677,7 @@ Get all messages matching a filter. Unlike 'shh_getFilterChanges' this returns a
 Result **["SHHFilterChange"]**.
 
 ```js
-const Eth = require('ethjs');
+const Eth = require('@metamask/ethjs');
 const eth = new Eth(new Eth.HttpProvider('http://localhost:8545'));
 
 eth.shh_getMessages(<BN ...>)
