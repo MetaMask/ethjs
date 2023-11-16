@@ -6,6 +6,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0]
+### Uncategorized
+- deprecate nodejs <8.17, npm<6
+- chore: format CHANGELOG.md
+- rename package from ethjs to @metamask/ethjs
+- chore: add .nvmrc set to v12
+- add package publishConfig
+- npm v5+ compat: rename prepublish script to prepare
+- devDeps: cross-env@1.0.7->6.0.3
+- devDeps: remove legacy check-es3-syntax-cli
+- devDeps/test: ethereumjs-testrpc->ganache-cli
+- devDeps: update web3@0.17.0-beta -> 0.20.7
+- remove coveralls,travis. npm [test-travis,coveralls]->test:coverage
+- build dist
+- chore: refresh package-lock.json
+- ci: Remove Travis integration
+- ci: Add GitHub Actions workflows
+
 ## [0.3.5]
 ### Fixed
 - Fix getTransactionSuccess unhandled promise rejection
@@ -72,7 +90,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Basic docs
   - License
 
-[Unreleased]: https://github.com/MetaMask/ethjs/compare/v0.3.5...HEAD
+[Unreleased]: https://github.com/MetaMask/ethjs/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/MetaMask/ethjs/compare/v0.3.5...v0.5.0
 [0.3.5]: https://github.com/MetaMask/ethjs/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/MetaMask/ethjs/compare/v0.2.8...v0.3.4
 [0.2.8]: https://github.com/MetaMask/ethjs/compare/v0.2.7...v0.2.8
