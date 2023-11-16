@@ -192,6 +192,10 @@
   "main": "lib/index.js",
   "name": "ethjs",
   "pre-commit": "build",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/ethjs/ethjs.git"
