@@ -1,6 +1,5 @@
 const assert = require('chai').assert;
 const TestRPC = require('ganache-cli');
-const Web3 = require('web3');
 const provider = TestRPC.provider();
 const provider2 = TestRPC.provider();
 const Eth = require('../index.js');
@@ -82,15 +81,12 @@ describe('eth.js', () => {
 
   describe('keccak256', () => {
     it('should function normally', () => {
-      const web3 = new Web3();
-
       const val = '45666';
       const hashVal = '512635863c9f802993f66ea46be7d8c3af7a567b940fbda0313433f33c5cc699';
       const hexHashVal = `0x${hashVal}`;
 
       assert.equal(typeof Eth.keccak256, 'function');
       assert.equal(Eth.keccak256(val), hexHashVal);
-      assert.equal(Eth.keccak256(val), web3.sha3(val));
     });
   });
 
@@ -121,23 +117,19 @@ describe('eth.js', () => {
 
   describe('fromWei', () => {
     it('should function normally', () => {
-      const web3 = new Web3(provider);
-
       const val = '23489723849723897239842';
 
       assert.equal(typeof Eth.fromWei, 'function');
-      assert.equal(Eth.fromWei(val, 'ether').toString(10), web3.fromWei(val, 'ether').toString(10));
+      assert.equal(Eth.fromWei(val, 'ether').toString(10), '23489.723849723897239842');
     });
   });
 
   describe('toWei', () => {
     it('should function normally', () => {
-      const web3 = new Web3(provider);
-
       const val = '687676';
 
       assert.equal(typeof Eth.toWei, 'function');
-      assert.equal(Eth.toWei(val, 'ether').toString(10), web3.toWei(val, 'ether').toString(10));
+      assert.equal(Eth.toWei(val, 'ether').toString(10), '687676000000000000000000');
     });
   });
 
