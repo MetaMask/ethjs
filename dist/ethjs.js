@@ -63,7 +63,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 122);
+/******/ 	return __webpack_require__(__webpack_require__.s = 121);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -118,9 +118,9 @@ $exports.store = store;
 
 'use strict'
 
-var base64 = __webpack_require__(59)
-var ieee754 = __webpack_require__(111)
-var isArray = __webpack_require__(113)
+var base64 = __webpack_require__(60)
+var ieee754 = __webpack_require__(112)
+var isArray = __webpack_require__(114)
 
 exports.Buffer = Buffer
 exports.SlowBuffer = SlowBuffer
@@ -1898,7 +1898,7 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer, __webpack_require__(51)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer, __webpack_require__(52)))
 
 /***/ },
 /* 4 */
@@ -5425,7 +5425,7 @@ module.exports = __webpack_require__(8) ? function (object, key, value) {
   };
 })(typeof module === 'undefined' || module, this);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(120)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(119)(module)))
 
 /***/ },
 /* 8 */
@@ -5929,7 +5929,7 @@ module.exports = {};
   }
 }(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(115), __webpack_require__(51)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(51), __webpack_require__(52)))
 
 /***/ },
 /* 12 */
@@ -6050,8 +6050,8 @@ module.exports = function (it, key) {
 /***/ function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(4);
-var IE8_DOM_DEFINE = __webpack_require__(68);
-var toPrimitive = __webpack_require__(89);
+var IE8_DOM_DEFINE = __webpack_require__(69);
+var toPrimitive = __webpack_require__(90);
 var dP = Object.defineProperty;
 
 exports.f = __webpack_require__(8) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
@@ -6355,7 +6355,7 @@ module.exports.f = function (C) {
 /***/ function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys = __webpack_require__(81);
+var $keys = __webpack_require__(82);
 var enumBugKeys = __webpack_require__(36);
 
 module.exports = Object.keys || function keys(O) {
@@ -6602,7 +6602,7 @@ module.exports = EthFilter;
 
 "use strict";
 'use strict';
-var isFn = __webpack_require__(112);
+var isFn = __webpack_require__(113);
 var setImmediate = __webpack_require__(118);
 
 module.exports = function (promise) {
@@ -6644,7 +6644,7 @@ module.exports = function stripHexPrefix(str) {
 /* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(119).nextTick;
+/* WEBPACK VAR INJECTION */(function(setImmediate, clearImmediate) {var nextTick = __webpack_require__(51).nextTick;
 var apply = Function.prototype.apply;
 var slice = Array.prototype.slice;
 var immediateIds = {};
@@ -6726,7 +6726,7 @@ exports.clearImmediate = typeof clearImmediate === "function" ? clearImmediate :
 /* 34 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(61), __esModule: true };
+module.exports = { "default": __webpack_require__(62), __esModule: true };
 
 /***/ },
 /* 35 */
@@ -6795,12 +6795,12 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 'use strict';
 var LIBRARY = __webpack_require__(22);
 var $export = __webpack_require__(5);
-var redefine = __webpack_require__(85);
+var redefine = __webpack_require__(86);
 var hide = __webpack_require__(6);
 var Iterators = __webpack_require__(10);
-var $iterCreate = __webpack_require__(72);
+var $iterCreate = __webpack_require__(73);
 var setToStringTag = __webpack_require__(25);
-var getPrototypeOf = __webpack_require__(80);
+var getPrototypeOf = __webpack_require__(81);
 var ITERATOR = __webpack_require__(2)('iterator');
 var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 var FF_ITERATOR = '@@iterator';
@@ -6946,7 +6946,7 @@ module.exports = function (O, D) {
 /***/ function(module, exports, __webpack_require__) {
 
 var ctx = __webpack_require__(15);
-var invoke = __webpack_require__(69);
+var invoke = __webpack_require__(70);
 var html = __webpack_require__(37);
 var cel = __webpack_require__(21);
 var global = __webpack_require__(0);
@@ -7061,7 +7061,7 @@ module.exports = function (key) {
 "use strict";
 'use strict';
 
-var _keys = __webpack_require__(55);
+var _keys = __webpack_require__(56);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -7107,7 +7107,7 @@ function hasTransactionObject(args) {
 
 /* eslint-disable */
 
-var utils = __webpack_require__(105);
+var utils = __webpack_require__(106);
 var uint256Coder = utils.uint256Coder;
 var coderBoolean = utils.coderBoolean;
 var coderFixedBytes = utils.coderFixedBytes;
@@ -7315,6 +7315,196 @@ module.exports = function isHexPrefixed(str) {
 /* 51 */
 /***/ function(module, exports) {
 
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ },
+/* 52 */
+/***/ function(module, exports) {
+
 var g;
 
 // This works in non-strict mode
@@ -7337,24 +7527,24 @@ module.exports = g;
 
 
 /***/ },
-/* 52 */
+/* 53 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(Buffer) {'use strict';
 
-var EthQuery = __webpack_require__(108);
+var EthQuery = __webpack_require__(109);
 var EthFilter = __webpack_require__(30);
-var EthContract = __webpack_require__(104);
-var HttpProvider = __webpack_require__(107);
-var abi = __webpack_require__(101);
+var EthContract = __webpack_require__(105);
+var HttpProvider = __webpack_require__(108);
+var abi = __webpack_require__(102);
 // const getTxSuccess = require('ethjs-transaction-success'); // eslint-disable-line
-var unit = __webpack_require__(110);
+var unit = __webpack_require__(111);
 var keccak256 = __webpack_require__(11).keccak_256;
 var toBN = __webpack_require__(12);
 var BN = __webpack_require__(7);
 var utils = __webpack_require__(19);
-var getTransactionSuccess = __webpack_require__(53);
+var getTransactionSuccess = __webpack_require__(54);
 
 module.exports = Eth;
 
@@ -7412,7 +7602,7 @@ Eth.HttpProvider = HttpProvider;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ },
-/* 53 */
+/* 54 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -7462,16 +7652,10 @@ module.exports = function (eth) {
 };
 
 /***/ },
-/* 54 */
-/***/ function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(60), __esModule: true };
-
-/***/ },
 /* 55 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(62), __esModule: true };
+module.exports = { "default": __webpack_require__(61), __esModule: true };
 
 /***/ },
 /* 56 */
@@ -7483,12 +7667,18 @@ module.exports = { "default": __webpack_require__(63), __esModule: true };
 /* 57 */
 /***/ function(module, exports, __webpack_require__) {
 
+module.exports = { "default": __webpack_require__(64), __esModule: true };
+
+/***/ },
+/* 58 */
+/***/ function(module, exports, __webpack_require__) {
+
 "use strict";
 "use strict";
 
 exports.__esModule = true;
 
-var _promise = __webpack_require__(56);
+var _promise = __webpack_require__(57);
 
 var _promise2 = _interopRequireDefault(_promise);
 
@@ -7524,14 +7714,14 @@ exports.default = function (fn) {
 };
 
 /***/ },
-/* 58 */
+/* 59 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(116);
 
 
 /***/ },
-/* 59 */
+/* 60 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -7689,7 +7879,7 @@ function fromByteArray (uint8) {
 
 
 /***/ },
-/* 60 */
+/* 61 */
 /***/ function(module, exports, __webpack_require__) {
 
 var core = __webpack_require__(1);
@@ -7700,19 +7890,11 @@ module.exports = function stringify(it) { // eslint-disable-line no-unused-vars
 
 
 /***/ },
-/* 61 */
-/***/ function(module, exports, __webpack_require__) {
-
-__webpack_require__(93);
-module.exports = __webpack_require__(1).Object.assign;
-
-
-/***/ },
 /* 62 */
 /***/ function(module, exports, __webpack_require__) {
 
 __webpack_require__(94);
-module.exports = __webpack_require__(1).Object.keys;
+module.exports = __webpack_require__(1).Object.assign;
 
 
 /***/ },
@@ -7720,23 +7902,31 @@ module.exports = __webpack_require__(1).Object.keys;
 /***/ function(module, exports, __webpack_require__) {
 
 __webpack_require__(95);
-__webpack_require__(97);
-__webpack_require__(100);
-__webpack_require__(96);
-__webpack_require__(98);
-__webpack_require__(99);
-module.exports = __webpack_require__(1).Promise;
+module.exports = __webpack_require__(1).Object.keys;
 
 
 /***/ },
 /* 64 */
+/***/ function(module, exports, __webpack_require__) {
+
+__webpack_require__(96);
+__webpack_require__(98);
+__webpack_require__(101);
+__webpack_require__(97);
+__webpack_require__(99);
+__webpack_require__(100);
+module.exports = __webpack_require__(1).Promise;
+
+
+/***/ },
+/* 65 */
 /***/ function(module, exports) {
 
 module.exports = function () { /* empty */ };
 
 
 /***/ },
-/* 65 */
+/* 66 */
 /***/ function(module, exports) {
 
 module.exports = function (it, Constructor, name, forbiddenField) {
@@ -7747,14 +7937,14 @@ module.exports = function (it, Constructor, name, forbiddenField) {
 
 
 /***/ },
-/* 66 */
+/* 67 */
 /***/ function(module, exports, __webpack_require__) {
 
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = __webpack_require__(28);
 var toLength = __webpack_require__(46);
-var toAbsoluteIndex = __webpack_require__(88);
+var toAbsoluteIndex = __webpack_require__(89);
 module.exports = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = toIObject($this);
@@ -7776,15 +7966,15 @@ module.exports = function (IS_INCLUDES) {
 
 
 /***/ },
-/* 67 */
+/* 68 */
 /***/ function(module, exports, __webpack_require__) {
 
 var ctx = __webpack_require__(15);
-var call = __webpack_require__(71);
-var isArrayIter = __webpack_require__(70);
+var call = __webpack_require__(72);
+var isArrayIter = __webpack_require__(71);
 var anObject = __webpack_require__(4);
 var toLength = __webpack_require__(46);
-var getIterFn = __webpack_require__(91);
+var getIterFn = __webpack_require__(92);
 var BREAK = {};
 var RETURN = {};
 var exports = module.exports = function (iterable, entries, fn, that, ITERATOR) {
@@ -7807,7 +7997,7 @@ exports.RETURN = RETURN;
 
 
 /***/ },
-/* 68 */
+/* 69 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = !__webpack_require__(8) && !__webpack_require__(16)(function () {
@@ -7816,7 +8006,7 @@ module.exports = !__webpack_require__(8) && !__webpack_require__(16)(function ()
 
 
 /***/ },
-/* 69 */
+/* 70 */
 /***/ function(module, exports) {
 
 // fast apply, http://jsperf.lnkit.com/fast-apply/5
@@ -7838,7 +8028,7 @@ module.exports = function (fn, args, that) {
 
 
 /***/ },
-/* 70 */
+/* 71 */
 /***/ function(module, exports, __webpack_require__) {
 
 // check on default Array iterator
@@ -7852,7 +8042,7 @@ module.exports = function (it) {
 
 
 /***/ },
-/* 71 */
+/* 72 */
 /***/ function(module, exports, __webpack_require__) {
 
 // call something on iterator step with safe closing on error
@@ -7870,12 +8060,12 @@ module.exports = function (iterator, fn, value, entries) {
 
 
 /***/ },
-/* 72 */
+/* 73 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
-var create = __webpack_require__(77);
+var create = __webpack_require__(78);
 var descriptor = __webpack_require__(42);
 var setToStringTag = __webpack_require__(25);
 var IteratorPrototype = {};
@@ -7890,7 +8080,7 @@ module.exports = function (Constructor, NAME, next) {
 
 
 /***/ },
-/* 73 */
+/* 74 */
 /***/ function(module, exports, __webpack_require__) {
 
 var ITERATOR = __webpack_require__(2)('iterator');
@@ -7918,7 +8108,7 @@ module.exports = function (exec, skipClosing) {
 
 
 /***/ },
-/* 74 */
+/* 75 */
 /***/ function(module, exports) {
 
 module.exports = function (done, value) {
@@ -7927,7 +8117,7 @@ module.exports = function (done, value) {
 
 
 /***/ },
-/* 75 */
+/* 76 */
 /***/ function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(0);
@@ -8002,15 +8192,15 @@ module.exports = function () {
 
 
 /***/ },
-/* 76 */
+/* 77 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys = __webpack_require__(24);
-var gOPS = __webpack_require__(79);
-var pIE = __webpack_require__(82);
+var gOPS = __webpack_require__(80);
+var pIE = __webpack_require__(83);
 var toObject = __webpack_require__(29);
 var IObject = __webpack_require__(38);
 var $assign = Object.assign;
@@ -8043,12 +8233,12 @@ module.exports = !$assign || __webpack_require__(16)(function () {
 
 
 /***/ },
-/* 77 */
+/* 78 */
 /***/ function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject = __webpack_require__(4);
-var dPs = __webpack_require__(78);
+var dPs = __webpack_require__(79);
 var enumBugKeys = __webpack_require__(36);
 var IE_PROTO = __webpack_require__(26)('IE_PROTO');
 var Empty = function () { /* empty */ };
@@ -8090,7 +8280,7 @@ module.exports = Object.create || function create(O, Properties) {
 
 
 /***/ },
-/* 78 */
+/* 79 */
 /***/ function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(18);
@@ -8109,14 +8299,14 @@ module.exports = __webpack_require__(8) ? Object.defineProperties : function def
 
 
 /***/ },
-/* 79 */
+/* 80 */
 /***/ function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ },
-/* 80 */
+/* 81 */
 /***/ function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
@@ -8135,12 +8325,12 @@ module.exports = Object.getPrototypeOf || function (O) {
 
 
 /***/ },
-/* 81 */
+/* 82 */
 /***/ function(module, exports, __webpack_require__) {
 
 var has = __webpack_require__(17);
 var toIObject = __webpack_require__(28);
-var arrayIndexOf = __webpack_require__(66)(false);
+var arrayIndexOf = __webpack_require__(67)(false);
 var IE_PROTO = __webpack_require__(26)('IE_PROTO');
 
 module.exports = function (object, names) {
@@ -8158,14 +8348,14 @@ module.exports = function (object, names) {
 
 
 /***/ },
-/* 82 */
+/* 83 */
 /***/ function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ },
-/* 83 */
+/* 84 */
 /***/ function(module, exports, __webpack_require__) {
 
 // most Object methods by ES6 should accept primitives
@@ -8181,7 +8371,7 @@ module.exports = function (KEY, exec) {
 
 
 /***/ },
-/* 84 */
+/* 85 */
 /***/ function(module, exports, __webpack_require__) {
 
 var hide = __webpack_require__(6);
@@ -8194,14 +8384,14 @@ module.exports = function (target, src, safe) {
 
 
 /***/ },
-/* 85 */
+/* 86 */
 /***/ function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(6);
 
 
 /***/ },
-/* 86 */
+/* 87 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8222,7 +8412,7 @@ module.exports = function (KEY) {
 
 
 /***/ },
-/* 87 */
+/* 88 */
 /***/ function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(27);
@@ -8245,7 +8435,7 @@ module.exports = function (TO_STRING) {
 
 
 /***/ },
-/* 88 */
+/* 89 */
 /***/ function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(27);
@@ -8258,7 +8448,7 @@ module.exports = function (index, length) {
 
 
 /***/ },
-/* 89 */
+/* 90 */
 /***/ function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
@@ -8276,7 +8466,7 @@ module.exports = function (it, S) {
 
 
 /***/ },
-/* 90 */
+/* 91 */
 /***/ function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(0);
@@ -8286,7 +8476,7 @@ module.exports = navigator && navigator.userAgent || '';
 
 
 /***/ },
-/* 91 */
+/* 92 */
 /***/ function(module, exports, __webpack_require__) {
 
 var classof = __webpack_require__(35);
@@ -8300,13 +8490,13 @@ module.exports = __webpack_require__(1).getIteratorMethod = function (it) {
 
 
 /***/ },
-/* 92 */
+/* 93 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
-var addToUnscopables = __webpack_require__(64);
-var step = __webpack_require__(74);
+var addToUnscopables = __webpack_require__(65);
+var step = __webpack_require__(75);
 var Iterators = __webpack_require__(10);
 var toIObject = __webpack_require__(28);
 
@@ -8341,24 +8531,24 @@ addToUnscopables('entries');
 
 
 /***/ },
-/* 93 */
+/* 94 */
 /***/ function(module, exports, __webpack_require__) {
 
 // 19.1.3.1 Object.assign(target, source)
 var $export = __webpack_require__(5);
 
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(76) });
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(77) });
 
 
 /***/ },
-/* 94 */
+/* 95 */
 /***/ function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 Object.keys(O)
 var toObject = __webpack_require__(29);
 var $keys = __webpack_require__(24);
 
-__webpack_require__(83)('keys', function () {
+__webpack_require__(84)('keys', function () {
   return function keys(it) {
     return $keys(toObject(it));
   };
@@ -8366,13 +8556,13 @@ __webpack_require__(83)('keys', function () {
 
 
 /***/ },
-/* 95 */
+/* 96 */
 /***/ function(module, exports) {
 
 
 
 /***/ },
-/* 96 */
+/* 97 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8384,14 +8574,14 @@ var classof = __webpack_require__(35);
 var $export = __webpack_require__(5);
 var isObject = __webpack_require__(9);
 var aFunction = __webpack_require__(13);
-var anInstance = __webpack_require__(65);
-var forOf = __webpack_require__(67);
+var anInstance = __webpack_require__(66);
+var forOf = __webpack_require__(68);
 var speciesConstructor = __webpack_require__(44);
 var task = __webpack_require__(45).set;
-var microtask = __webpack_require__(75)();
+var microtask = __webpack_require__(76)();
 var newPromiseCapabilityModule = __webpack_require__(23);
 var perform = __webpack_require__(40);
-var userAgent = __webpack_require__(90);
+var userAgent = __webpack_require__(91);
 var promiseResolve = __webpack_require__(41);
 var PROMISE = 'Promise';
 var TypeError = global.TypeError;
@@ -8567,7 +8757,7 @@ if (!USE_NATIVE) {
     this._h = 0;              // <- rejection state, 0 - default, 1 - handled, 2 - unhandled
     this._n = false;          // <- notify
   };
-  Internal.prototype = __webpack_require__(84)($Promise.prototype, {
+  Internal.prototype = __webpack_require__(85)($Promise.prototype, {
     // 25.4.5.3 Promise.prototype.then(onFulfilled, onRejected)
     then: function then(onFulfilled, onRejected) {
       var reaction = newPromiseCapability(speciesConstructor(this, $Promise));
@@ -8599,7 +8789,7 @@ if (!USE_NATIVE) {
 
 $export($export.G + $export.W + $export.F * !USE_NATIVE, { Promise: $Promise });
 __webpack_require__(25)($Promise, PROMISE);
-__webpack_require__(86)(PROMISE);
+__webpack_require__(87)(PROMISE);
 Wrapper = __webpack_require__(1)[PROMISE];
 
 // statics
@@ -8618,7 +8808,7 @@ $export($export.S + $export.F * (LIBRARY || !USE_NATIVE), PROMISE, {
     return promiseResolve(LIBRARY && this === Wrapper ? $Promise : this, x);
   }
 });
-$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(73)(function (iter) {
+$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(74)(function (iter) {
   $Promise.all(iter)['catch'](empty);
 })), PROMISE, {
   // 25.4.4.1 Promise.all(iterable)
@@ -8665,12 +8855,12 @@ $export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(73)(function
 
 
 /***/ },
-/* 97 */
+/* 98 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
-var $at = __webpack_require__(87)(true);
+var $at = __webpack_require__(88)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
 __webpack_require__(39)(String, 'String', function (iterated) {
@@ -8689,7 +8879,7 @@ __webpack_require__(39)(String, 'String', function (iterated) {
 
 
 /***/ },
-/* 98 */
+/* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8716,7 +8906,7 @@ $export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
 
 
 /***/ },
-/* 99 */
+/* 100 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8735,10 +8925,10 @@ $export($export.S, 'Promise', { 'try': function (callbackfn) {
 
 
 /***/ },
-/* 100 */
+/* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
-__webpack_require__(92);
+__webpack_require__(93);
 var global = __webpack_require__(0);
 var hide = __webpack_require__(6);
 var Iterators = __webpack_require__(10);
@@ -8760,7 +8950,7 @@ for (var i = 0; i < DOMIterables.length; i++) {
 
 
 /***/ },
-/* 101 */
+/* 102 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8768,7 +8958,7 @@ for (var i = 0; i < DOMIterables.length; i++) {
 
 /* eslint-disable */
 
-var utils = __webpack_require__(102);
+var utils = __webpack_require__(103);
 var uint256Coder = utils.uint256Coder;
 var coderBoolean = utils.coderBoolean;
 var coderFixedBytes = utils.coderFixedBytes;
@@ -8970,7 +9160,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ },
-/* 102 */
+/* 103 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9394,21 +9584,21 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ },
-/* 103 */
+/* 104 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var _regenerator = __webpack_require__(58);
+var _regenerator = __webpack_require__(59);
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
 
-var _stringify = __webpack_require__(54);
+var _stringify = __webpack_require__(55);
 
 var _stringify2 = _interopRequireDefault(_stringify);
 
-var _asyncToGenerator2 = __webpack_require__(57);
+var _asyncToGenerator2 = __webpack_require__(58);
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
@@ -9557,7 +9747,7 @@ function getCallableMethodsFromABI(contractABI) {
 }
 
 /***/ },
-/* 104 */
+/* 105 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9573,7 +9763,7 @@ var abi = __webpack_require__(49); // eslint-disable-line
 var keccak256 = __webpack_require__(11).keccak_256; // eslint-disable-line
 var EthFilter = __webpack_require__(30); // eslint-disable-line
 var getKeys = __webpack_require__(19).getKeys; // eslint-disable-line
-var Contract = __webpack_require__(103);
+var Contract = __webpack_require__(104);
 var hasTransactionObject = __webpack_require__(48);
 
 module.exports = EthContract;
@@ -9637,7 +9827,7 @@ function getConstructorFromABI(contractABI) {
 }
 
 /***/ },
-/* 105 */
+/* 106 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10061,13 +10251,13 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ },
-/* 106 */
+/* 107 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var schema = __webpack_require__(114);
+var schema = __webpack_require__(115);
 var util = __webpack_require__(19);
 var numberToBN = __webpack_require__(12);
 var stripHexPrefix = __webpack_require__(32);
@@ -10321,7 +10511,7 @@ module.exports = {
 };
 
 /***/ },
-/* 107 */
+/* 108 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10336,7 +10526,7 @@ module.exports = {
  */
 
 // workaround to use httpprovider in different envs
-var XHR2 = __webpack_require__(121);
+var XHR2 = __webpack_require__(120);
 
 /*
 ""
@@ -10433,14 +10623,14 @@ HttpProvider.prototype.sendAsync = function (payload, callback) {
 module.exports = HttpProvider;
 
 /***/ },
-/* 108 */
+/* 109 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
 'use strict';
 
-var format = __webpack_require__(106);
-var EthRPC = __webpack_require__(109);
+var format = __webpack_require__(107);
+var EthRPC = __webpack_require__(110);
 var promiseToCallback = __webpack_require__(31);
 
 module.exports = Eth;
@@ -10554,7 +10744,7 @@ function generateFnFor(rpcMethodName, methodObject) {
 }
 
 /***/ },
-/* 109 */
+/* 110 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10651,7 +10841,7 @@ function createPayload(data, id) {
 }
 
 /***/ },
-/* 110 */
+/* 111 */
 /***/ function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -10825,7 +11015,7 @@ module.exports = {
 };
 
 /***/ },
-/* 111 */
+/* 112 */
 /***/ function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -10915,7 +11105,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ },
-/* 112 */
+/* 113 */
 /***/ function(module, exports) {
 
 "use strict";
@@ -10928,7 +11118,7 @@ module.exports = function (x) {
 
 
 /***/ },
-/* 113 */
+/* 114 */
 /***/ function(module, exports) {
 
 var toString = {}.toString;
@@ -10939,825 +11129,10 @@ module.exports = Array.isArray || function (arr) {
 
 
 /***/ },
-/* 114 */
-/***/ function(module, exports) {
-
-module.exports = {
-	"methods": {
-		"web3_clientVersion": [
-			[],
-			"S"
-		],
-		"web3_sha3": [
-			[
-				"S"
-			],
-			"D",
-			1
-		],
-		"net_version": [
-			[],
-			"S"
-		],
-		"net_peerCount": [
-			[],
-			"Q"
-		],
-		"net_listening": [
-			[],
-			"B"
-		],
-		"personal_sign": [
-			[
-				"D",
-				"D20",
-				"S"
-			],
-			"D",
-			2
-		],
-		"personal_ecRecover": [
-			[
-				"D",
-				"D"
-			],
-			"D20",
-			2
-		],
-		"eth_protocolVersion": [
-			[],
-			"S"
-		],
-		"eth_syncing": [
-			[],
-			"B|EthSyncing"
-		],
-		"eth_coinbase": [
-			[],
-			"D20"
-		],
-		"eth_mining": [
-			[],
-			"B"
-		],
-		"eth_hashrate": [
-			[],
-			"Q"
-		],
-		"eth_gasPrice": [
-			[],
-			"Q"
-		],
-		"eth_accounts": [
-			[],
-			[
-				"D20"
-			]
-		],
-		"eth_blockNumber": [
-			[],
-			"Q"
-		],
-		"eth_getBalance": [
-			[
-				"D20",
-				"Q|T"
-			],
-			"Q",
-			1,
-			2
-		],
-		"eth_getStorageAt": [
-			[
-				"D20",
-				"Q",
-				"Q|T"
-			],
-			"D",
-			2,
-			2
-		],
-		"eth_getTransactionCount": [
-			[
-				"D20",
-				"Q|T"
-			],
-			"Q",
-			1,
-			2
-		],
-		"eth_getBlockTransactionCountByHash": [
-			[
-				"D32"
-			],
-			"Q",
-			1
-		],
-		"eth_getBlockTransactionCountByNumber": [
-			[
-				"Q|T"
-			],
-			"Q",
-			1
-		],
-		"eth_getUncleCountByBlockHash": [
-			[
-				"D32"
-			],
-			"Q",
-			1
-		],
-		"eth_getUncleCountByBlockNumber": [
-			[
-				"Q"
-			],
-			"Q",
-			1
-		],
-		"eth_getCode": [
-			[
-				"D20",
-				"Q|T"
-			],
-			"D",
-			1,
-			2
-		],
-		"eth_sign": [
-			[
-				"D20",
-				"D"
-			],
-			"D",
-			2
-		],
-		"eth_signTypedData": [
-			[
-				"Array|DATA",
-				"D20"
-			],
-			"D",
-			1
-		],
-		"eth_sendTransaction": [
-			[
-				"SendTransaction"
-			],
-			"D",
-			1
-		],
-		"eth_sendRawTransaction": [
-			[
-				"D"
-			],
-			"D32",
-			1
-		],
-		"eth_call": [
-			[
-				"CallTransaction",
-				"Q|T"
-			],
-			"D",
-			1,
-			2
-		],
-		"eth_estimateGas": [
-			[
-				"EstimateTransaction",
-				"Q|T"
-			],
-			"Q",
-			1
-		],
-		"eth_getBlockByHash": [
-			[
-				"D32",
-				"B"
-			],
-			"Block",
-			2
-		],
-		"eth_getBlockByNumber": [
-			[
-				"Q|T",
-				"B"
-			],
-			"Block",
-			2
-		],
-		"eth_getTransactionByHash": [
-			[
-				"D32"
-			],
-			"Transaction",
-			1
-		],
-		"eth_getTransactionByBlockHashAndIndex": [
-			[
-				"D32",
-				"Q"
-			],
-			"Transaction",
-			2
-		],
-		"eth_getTransactionByBlockNumberAndIndex": [
-			[
-				"Q|T",
-				"Q"
-			],
-			"Transaction",
-			2
-		],
-		"eth_getTransactionReceipt": [
-			[
-				"D32"
-			],
-			"Receipt",
-			1
-		],
-		"eth_getUncleByBlockHashAndIndex": [
-			[
-				"D32",
-				"Q"
-			],
-			"Block",
-			1
-		],
-		"eth_getUncleByBlockNumberAndIndex": [
-			[
-				"Q|T",
-				"Q"
-			],
-			"Block",
-			2
-		],
-		"eth_getCompilers": [
-			[],
-			[
-				"S"
-			]
-		],
-		"eth_compileLLL": [
-			[
-				"S"
-			],
-			"D",
-			1
-		],
-		"eth_compileSolidity": [
-			[
-				"S"
-			],
-			"D",
-			1
-		],
-		"eth_compileSerpent": [
-			[
-				"S"
-			],
-			"D",
-			1
-		],
-		"eth_newFilter": [
-			[
-				"Filter"
-			],
-			"Q",
-			1
-		],
-		"eth_newBlockFilter": [
-			[],
-			"Q"
-		],
-		"eth_newPendingTransactionFilter": [
-			[],
-			"Q"
-		],
-		"eth_uninstallFilter": [
-			[
-				"QP"
-			],
-			"B",
-			1
-		],
-		"eth_getFilterChanges": [
-			[
-				"QP"
-			],
-			[
-				"FilterChange"
-			],
-			1
-		],
-		"eth_getFilterLogs": [
-			[
-				"QP"
-			],
-			[
-				"FilterChange"
-			],
-			1
-		],
-		"eth_getLogs": [
-			[
-				"Filter"
-			],
-			[
-				"FilterChange"
-			],
-			1
-		],
-		"eth_getWork": [
-			[],
-			[
-				"D"
-			]
-		],
-		"eth_submitWork": [
-			[
-				"D",
-				"D32",
-				"D32"
-			],
-			"B",
-			3
-		],
-		"eth_submitHashrate": [
-			[
-				"D",
-				"D"
-			],
-			"B",
-			2
-		],
-		"db_putString": [
-			[
-				"S",
-				"S",
-				"S"
-			],
-			"B",
-			2
-		],
-		"db_getString": [
-			[
-				"S",
-				"S"
-			],
-			"S",
-			2
-		],
-		"db_putHex": [
-			[
-				"S",
-				"S",
-				"D"
-			],
-			"B",
-			2
-		],
-		"db_getHex": [
-			[
-				"S",
-				"S"
-			],
-			"D",
-			2
-		],
-		"shh_post": [
-			[
-				"SHHPost"
-			],
-			"B",
-			1
-		],
-		"shh_version": [
-			[],
-			"S"
-		],
-		"shh_newIdentity": [
-			[],
-			"D"
-		],
-		"shh_hasIdentity": [
-			[
-				"D"
-			],
-			"B"
-		],
-		"shh_newGroup": [
-			[],
-			"D"
-		],
-		"shh_addToGroup": [
-			[
-				"D"
-			],
-			"B",
-			1
-		],
-		"shh_newFilter": [
-			[
-				"SHHFilter"
-			],
-			"Q",
-			1
-		],
-		"shh_uninstallFilter": [
-			[
-				"Q"
-			],
-			"B",
-			1
-		],
-		"shh_getFilterChanges": [
-			[
-				"Q"
-			],
-			[
-				"SHHFilterChange"
-			],
-			1
-		],
-		"shh_getMessages": [
-			[
-				"Q"
-			],
-			[
-				"SHHFilterChange"
-			],
-			1
-		]
-	},
-	"tags": [
-		"latest",
-		"earliest",
-		"pending"
-	],
-	"objects": {
-		"EthSyncing": {
-			"__required": [],
-			"startingBlock": "Q",
-			"currentBlock": "Q",
-			"highestBlock": "Q"
-		},
-		"SendTransaction": {
-			"__required": [
-				"from",
-				"data"
-			],
-			"from": "D20",
-			"to": "D20",
-			"gas": "Q",
-			"gasPrice": "Q",
-			"value": "Q",
-			"data": "D",
-			"nonce": "Q"
-		},
-		"EstimateTransaction": {
-			"__required": [],
-			"from": "D20",
-			"to": "D20",
-			"gas": "Q",
-			"gasPrice": "Q",
-			"value": "Q",
-			"data": "D",
-			"nonce": "Q"
-		},
-		"CallTransaction": {
-			"__required": [
-				"to"
-			],
-			"from": "D20",
-			"to": "D20",
-			"gas": "Q",
-			"gasPrice": "Q",
-			"value": "Q",
-			"data": "D",
-			"nonce": "Q"
-		},
-		"Block": {
-			"__required": [],
-			"number": "Q",
-			"hash": "D32",
-			"parentHash": "D32",
-			"nonce": "D",
-			"sha3Uncles": "D",
-			"logsBloom": "D",
-			"transactionsRoot": "D",
-			"stateRoot": "D",
-			"receiptsRoot": "D",
-			"miner": "D",
-			"difficulty": "Q",
-			"totalDifficulty": "Q",
-			"extraData": "D",
-			"size": "Q",
-			"gasLimit": "Q",
-			"gasUsed": "Q",
-			"timestamp": "Q",
-			"transactions": [
-				"DATA|Transaction"
-			],
-			"uncles": [
-				"D"
-			]
-		},
-		"Transaction": {
-			"__required": [],
-			"hash": "D32",
-			"nonce": "Q",
-			"blockHash": "D32",
-			"blockNumber": "Q",
-			"transactionIndex": "Q",
-			"from": "D20",
-			"to": "D20",
-			"value": "Q",
-			"gasPrice": "Q",
-			"gas": "Q",
-			"input": "D"
-		},
-		"Receipt": {
-			"__required": [],
-			"transactionHash": "D32",
-			"transactionIndex": "Q",
-			"blockHash": "D32",
-			"blockNumber": "Q",
-			"cumulativeGasUsed": "Q",
-			"gasUsed": "Q",
-			"contractAddress": "D20",
-			"logs": [
-				"FilterChange"
-			]
-		},
-		"Filter": {
-			"__required": [],
-			"fromBlock": "Q|T",
-			"toBlock": "Q|T",
-			"address": "D20",
-			"topics": [
-				"D"
-			]
-		},
-		"FilterChange": {
-			"__required": [],
-			"removed": "B",
-			"logIndex": "Q",
-			"transactionIndex": "Q",
-			"transactionHash": "D32",
-			"blockHash": "D32",
-			"blockNumber": "Q",
-			"address": "D20",
-			"data": "Array|DATA",
-			"topics": [
-				"D"
-			]
-		},
-		"SHHPost": {
-			"__required": [
-				"topics",
-				"payload",
-				"priority",
-				"ttl"
-			],
-			"from": "D",
-			"to": "D",
-			"topics": [
-				"D"
-			],
-			"payload": "D",
-			"priority": "Q",
-			"ttl": "Q"
-		},
-		"SHHFilter": {
-			"__required": [
-				"topics"
-			],
-			"to": "D",
-			"topics": [
-				"D"
-			]
-		},
-		"SHHFilterChange": {
-			"__required": [],
-			"hash": "D",
-			"from": "D",
-			"to": "D",
-			"expiry": "Q",
-			"ttl": "Q",
-			"sent": "Q",
-			"topics": [
-				"D"
-			],
-			"payload": "D",
-			"workProved": "Q"
-		},
-		"SHHMessage": {
-			"__required": [],
-			"hash": "D",
-			"from": "D",
-			"to": "D",
-			"expiry": "Q",
-			"ttl": "Q",
-			"sent": "Q",
-			"topics": [
-				"D"
-			],
-			"payload": "D",
-			"workProved": "Q"
-		}
-	}
-};
-
-/***/ },
 /* 115 */
 /***/ function(module, exports) {
 
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
+module.exports = {"methods":{"web3_clientVersion":[[],"S"],"web3_sha3":[["S"],"D",1],"net_version":[[],"S"],"net_peerCount":[[],"Q"],"net_listening":[[],"B"],"personal_sign":[["D","D20","S"],"D",2],"personal_ecRecover":[["D","D"],"D20",2],"eth_protocolVersion":[[],"S"],"eth_syncing":[[],"B|EthSyncing"],"eth_coinbase":[[],"D20"],"eth_mining":[[],"B"],"eth_hashrate":[[],"Q"],"eth_gasPrice":[[],"Q"],"eth_accounts":[[],["D20"]],"eth_blockNumber":[[],"Q"],"eth_getBalance":[["D20","Q|T"],"Q",1,2],"eth_getStorageAt":[["D20","Q","Q|T"],"D",2,2],"eth_getTransactionCount":[["D20","Q|T"],"Q",1,2],"eth_getBlockTransactionCountByHash":[["D32"],"Q",1],"eth_getBlockTransactionCountByNumber":[["Q|T"],"Q",1],"eth_getUncleCountByBlockHash":[["D32"],"Q",1],"eth_getUncleCountByBlockNumber":[["Q"],"Q",1],"eth_getCode":[["D20","Q|T"],"D",1,2],"eth_sign":[["D20","D"],"D",2],"eth_signTypedData":[["Array|DATA","D20"],"D",1],"eth_sendTransaction":[["SendTransaction"],"D",1],"eth_sendRawTransaction":[["D"],"D32",1],"eth_call":[["CallTransaction","Q|T"],"D",1,2],"eth_estimateGas":[["EstimateTransaction","Q|T"],"Q",1],"eth_getBlockByHash":[["D32","B"],"Block",2],"eth_getBlockByNumber":[["Q|T","B"],"Block",2],"eth_getTransactionByHash":[["D32"],"Transaction",1],"eth_getTransactionByBlockHashAndIndex":[["D32","Q"],"Transaction",2],"eth_getTransactionByBlockNumberAndIndex":[["Q|T","Q"],"Transaction",2],"eth_getTransactionReceipt":[["D32"],"Receipt",1],"eth_getUncleByBlockHashAndIndex":[["D32","Q"],"Block",1],"eth_getUncleByBlockNumberAndIndex":[["Q|T","Q"],"Block",2],"eth_getCompilers":[[],["S"]],"eth_compileLLL":[["S"],"D",1],"eth_compileSolidity":[["S"],"D",1],"eth_compileSerpent":[["S"],"D",1],"eth_newFilter":[["Filter"],"Q",1],"eth_newBlockFilter":[[],"Q"],"eth_newPendingTransactionFilter":[[],"Q"],"eth_uninstallFilter":[["QP"],"B",1],"eth_getFilterChanges":[["QP"],["FilterChange"],1],"eth_getFilterLogs":[["QP"],["FilterChange"],1],"eth_getLogs":[["Filter"],["FilterChange"],1],"eth_getWork":[[],["D"]],"eth_submitWork":[["D","D32","D32"],"B",3],"eth_submitHashrate":[["D","D"],"B",2],"db_putString":[["S","S","S"],"B",2],"db_getString":[["S","S"],"S",2],"db_putHex":[["S","S","D"],"B",2],"db_getHex":[["S","S"],"D",2],"shh_post":[["SHHPost"],"B",1],"shh_version":[[],"S"],"shh_newIdentity":[[],"D"],"shh_hasIdentity":[["D"],"B"],"shh_newGroup":[[],"D"],"shh_addToGroup":[["D"],"B",1],"shh_newFilter":[["SHHFilter"],"Q",1],"shh_uninstallFilter":[["Q"],"B",1],"shh_getFilterChanges":[["Q"],["SHHFilterChange"],1],"shh_getMessages":[["Q"],["SHHFilterChange"],1]},"tags":["latest","earliest","pending"],"objects":{"EthSyncing":{"__required":[],"startingBlock":"Q","currentBlock":"Q","highestBlock":"Q"},"SendTransaction":{"__required":["from","data"],"from":"D20","to":"D20","gas":"Q","gasPrice":"Q","value":"Q","data":"D","nonce":"Q"},"EstimateTransaction":{"__required":[],"from":"D20","to":"D20","gas":"Q","gasPrice":"Q","value":"Q","data":"D","nonce":"Q"},"CallTransaction":{"__required":["to"],"from":"D20","to":"D20","gas":"Q","gasPrice":"Q","value":"Q","data":"D","nonce":"Q"},"Block":{"__required":[],"number":"Q","hash":"D32","parentHash":"D32","nonce":"D","sha3Uncles":"D","logsBloom":"D","transactionsRoot":"D","stateRoot":"D","receiptsRoot":"D","miner":"D","difficulty":"Q","totalDifficulty":"Q","extraData":"D","size":"Q","gasLimit":"Q","gasUsed":"Q","timestamp":"Q","transactions":["DATA|Transaction"],"uncles":["D"]},"Transaction":{"__required":[],"hash":"D32","nonce":"Q","blockHash":"D32","blockNumber":"Q","transactionIndex":"Q","from":"D20","to":"D20","value":"Q","gasPrice":"Q","gas":"Q","input":"D"},"Receipt":{"__required":[],"transactionHash":"D32","transactionIndex":"Q","blockHash":"D32","blockNumber":"Q","cumulativeGasUsed":"Q","gasUsed":"Q","contractAddress":"D20","logs":["FilterChange"]},"Filter":{"__required":[],"fromBlock":"Q|T","toBlock":"Q|T","address":"D20","topics":["D"]},"FilterChange":{"__required":[],"removed":"B","logIndex":"Q","transactionIndex":"Q","transactionHash":"D32","blockHash":"D32","blockNumber":"Q","address":"D20","data":"Array|DATA","topics":["D"]},"SHHPost":{"__required":["topics","payload","priority","ttl"],"from":"D","to":"D","topics":["D"],"payload":"D","priority":"Q","ttl":"Q"},"SHHFilter":{"__required":["topics"],"to":"D","topics":["D"]},"SHHFilterChange":{"__required":[],"hash":"D","from":"D","to":"D","expiry":"Q","ttl":"Q","sent":"Q","topics":["D"],"payload":"D","workProved":"Q"},"SHHMessage":{"__required":[],"hash":"D","from":"D","to":"D","expiry":"Q","ttl":"Q","sent":"Q","topics":["D"],"payload":"D","workProved":"Q"}}}
 
 /***/ },
 /* 116 */
@@ -12552,196 +11927,6 @@ module.exports = typeof setImmediate === 'function' ? setImmediate :
 /* 119 */
 /***/ function(module, exports) {
 
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ },
-/* 120 */
-/***/ function(module, exports) {
-
 module.exports = function(module) {
 	if(!module.webpackPolyfill) {
 		module.deprecate = function() {};
@@ -12765,17 +11950,17 @@ module.exports = function(module) {
 
 
 /***/ },
-/* 121 */
+/* 120 */
 /***/ function(module, exports) {
 
 module.exports = XMLHttpRequest;
 
 
 /***/ },
-/* 122 */
+/* 121 */
 /***/ function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(52);
+module.exports = __webpack_require__(53);
 
 
 /***/ }
