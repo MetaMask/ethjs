@@ -120,8 +120,6 @@
     "eslint-plugin-import": "1.8.0",
     "eslint-plugin-jsx-a11y": "1.2.0",
     "eslint-plugin-react": "5.1.1",
-    "ethjs-account": "0.1.0",
-    "ethjs-signer": "0.1.0",
     "ganache-cli": "6.12.2",
     "istanbul": "0.4.5",
     "json-loader": "0.5.4",
