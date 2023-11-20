@@ -126,7 +126,6 @@
     "ganache-cli": "6.12.2",
     "istanbul": "0.4.5",
     "json-loader": "0.5.4",
-    "lint-staged": "1.0.1",
     "mocha": "3.1.2",
     "pre-commit": "^1.2.2",
     "rimraf": "^3.0.2",
@@ -186,9 +185,6 @@
     "rpc"
   ],
   "license": "MIT",
-  "lint-staged": {
-    "lint:eslint": "*.js"
-  },
   "main": "lib/index.js",
   "name": "@metamask/ethjs",
   "pre-commit": "build",
@@ -210,7 +206,6 @@
     "lint": "npm run lint:js",
     "lint:eslint": "eslint --ignore-path .gitignore --ignore-pattern **/**.min.js",
     "lint:js": "npm run lint:eslint -- . ",
-    "lint:staged": "lint-staged",
     "prebuild": "npm run build:clean && npm run test",
     "prepare": "npm run build",
     "pretest": "npm run lint",
