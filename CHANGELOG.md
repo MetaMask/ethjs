@@ -6,6 +6,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.1]
+### Uncategorized
+- deps: replace ethjs packages with @metamask forks ([#12](https://github.com/MetaMask/ethjs/pull/12))
+- npm dedupe; npm audit fix
+- devDeps: json-loader@0.5.4->^0.5.7
+- devDeps: unpin cross-env, istanbul
+- devDeps: chai@3.5.0->^4.3.10
+- test: remove use of web3
+- devDeps: remove unused ethjs-account,ethjs-signer
+- devDeps: mocha@3.2.0->^7.2.0
+- devDeps: remove unused eventsource-polyfill
+- chore: remove lint:staged script
+- devDeps: pre-commit@1.1.3->^1.2.2
+- devDeps: rimraf@2.3.4->^3.0.2
+
 ## [0.5.0]
 ### Changed
 - Rename package from `ethjs` to `@metamask/ethjs` ([#9](https://github.com/MetaMask/ethjs/pull/9))
@@ -80,7 +95,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Basic docs
   - License
 
-[Unreleased]: https://github.com/MetaMask/ethjs/compare/v0.5.0...HEAD
+[Unreleased]: https://github.com/MetaMask/ethjs/compare/v0.5.1...HEAD
+[0.5.1]: https://github.com/MetaMask/ethjs/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/MetaMask/ethjs/compare/v0.3.5...v0.5.0
 [0.3.5]: https://github.com/MetaMask/ethjs/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/MetaMask/ethjs/compare/v0.2.8...v0.3.4
