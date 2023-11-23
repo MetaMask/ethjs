@@ -7,19 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [0.5.1]
-### Uncategorized
-- deps: replace ethjs packages with @metamask forks ([#12](https://github.com/MetaMask/ethjs/pull/12))
-- npm dedupe; npm audit fix
-- devDeps: json-loader@0.5.4->^0.5.7
-- devDeps: unpin cross-env, istanbul
-- devDeps: chai@3.5.0->^4.3.10
-- test: remove use of web3
-- devDeps: remove unused ethjs-account,ethjs-signer
-- devDeps: mocha@3.2.0->^7.2.0
-- devDeps: remove unused eventsource-polyfill
-- chore: remove lint:staged script
-- devDeps: pre-commit@1.1.3->^1.2.2
-- devDeps: rimraf@2.3.4->^3.0.2
+### Changed
+- Replace `ethjs` packages with `@metamask/` forks ([#12](https://github.com/MetaMask/ethjs/pull/12)) ([#16](https://github.com/MetaMask/ethjs/pull/16))
+
+### Fixed
+- Bump `js-sha3` from `0.5.5` to `^0.9.2` ([#13](https://github.com/MetaMask/ethjs/pull/13))
+  - `npm dedupe; npm audit fix`
 
 ## [0.5.0]
 ### Changed
