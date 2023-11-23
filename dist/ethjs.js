@@ -7660,7 +7660,6 @@ var toBN = __webpack_require__(8);
 var BN = __webpack_require__(9);
 var utils = __webpack_require__(13);
 var getTransactionSuccess = __webpack_require__(125);
-
 module.exports = Eth;
 
 /**
@@ -7682,10 +7681,9 @@ function Eth(cprovider, options) {
   var query = new EthQuery(cprovider, self.options.query);
   Object.keys(Object.getPrototypeOf(query)).forEach(function (methodName) {
     self[methodName] = function () {
-      for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
       }
-
       return query[methodName].apply(query, args);
     };
   });
@@ -7695,13 +7693,12 @@ function Eth(cprovider, options) {
   self.setProvider = query.setProvider;
   self.getTransactionSuccess = getTransactionSuccess(self);
 }
-
 Eth.BN = BN;
 Eth.isAddress = function (val) {
   return utils.isHexString(val, 20);
 };
 Eth.keccak256 = function (val) {
-  return '0x' + keccak256(val);
+  return "0x" + keccak256(val);
 };
 Eth.Buffer = Buffer;
 Eth.isHexString = utils.isHexString;
@@ -13262,10 +13259,8 @@ module.exports = {
 module.exports = function (eth) {
   return function (txHash, callback) {
     var count = 0;
-
     var timeout = eth.options.timeout || 800000;
     var interval = eth.options.interval || 7000;
-
     var prom = new Promise(function (resolve, reject) {
       var txInterval = setInterval(function () {
         eth.getTransactionReceipt(txHash, function (err, result) {
@@ -13273,23 +13268,19 @@ module.exports = function (eth) {
             clearInterval(txInterval);
             reject(err);
           }
-
           if (!err && result) {
             clearInterval(txInterval);
             resolve(result);
           }
         });
-
         if (count >= timeout) {
           clearInterval(txInterval);
           var errMessage = "Receipt timeout waiting for tx hash: " + txHash;
           reject(errMessage);
         }
-
         count += interval;
       }, interval);
     });
-
     if (callback) {
       prom.then(function (res) {
         return callback(null, res);
@@ -13297,7 +13288,6 @@ module.exports = function (eth) {
         return callback(err, null);
       });
     }
-
     return callback ? null : prom;
   };
 };
