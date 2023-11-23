@@ -7654,7 +7654,6 @@ var EthFilter = __webpack_require__(23);
 var EthContract = __webpack_require__(66);
 var HttpProvider = __webpack_require__(119);
 var abi = __webpack_require__(121);
-// const getTxSuccess = require('ethjs-transaction-success'); // eslint-disable-line
 var unit = __webpack_require__(124);
 var keccak256 = __webpack_require__(32).keccak_256;
 var toBN = __webpack_require__(8);

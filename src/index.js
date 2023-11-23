@@ -3,7 +3,6 @@ const EthFilter = require('@metamask/ethjs-filter');
 const EthContract = require('@metamask/ethjs-contract');
 const HttpProvider = require('@metamask/ethjs-provider-http');
 const abi = require('ethjs-abi');
-// const getTxSuccess = require('ethjs-transaction-success'); // eslint-disable-line
 const unit = require('@metamask/ethjs-unit');
 const keccak256 = require('js-sha3').keccak_256;
 const toBN = require('number-to-bn');
@@ -39,8 +38,8 @@ function Eth(cprovider, options) {
 }
 
 Eth.BN = BN;
-Eth.isAddress = (val) => utils.isHexString(val, 20);
-Eth.keccak256 = (val) => `0x${keccak256(val)}`;
+Eth.isAddress = val => utils.isHexString(val, 20);
+Eth.keccak256 = val => `0x${keccak256(val)}`;
 Eth.Buffer = Buffer;
 Eth.isHexString = utils.isHexString;
 Eth.fromWei = unit.fromWei;
