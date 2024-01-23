@@ -12043,7 +12043,7 @@ timeout
  * InvalidResponseError helper for invalid errors.
  */
 function invalidResponseError(request, host) {
-  var responseError = new Error('[ethjs-provider-http] Invalid JSON RPC response from provider\n    host: ' + host + '\n    response: ' + String(request.responseText) + ' ' + JSON.stringify(request.responseText, null, 2) + '\n    responseURL: ' + request.responseURL + '\n    status: ' + request.status + '\n    statusText: ' + request.statusText + '\n  ');
+  var responseError = new Error("[ethjs-provider-http] Invalid JSON RPC response from provider\n    host: " + host + "\n    response: " + String(request.responseText) + " " + JSON.stringify(request.responseText, null, 2) + "\n    responseURL: " + request.responseURL + "\n    status: " + request.status + "\n    statusText: " + request.statusText + "\n  ");
   responseError.value = request;
   return responseError;
 }
@@ -12058,7 +12058,6 @@ function HttpProvider(host, timeout) {
   if (typeof host !== 'string') {
     throw new Error('[ethjs-provider-http] the HttpProvider instance requires that the host be specified (e.g. `new HttpProvider("http://localhost:8545")` or via service like infura `new HttpProvider("http://ropsten.infura.io")`)');
   }
-
   var self = this;
   self.host = host;
   self.timeout = timeout || 0;
@@ -12079,7 +12078,6 @@ HttpProvider.prototype.sendAsync = function (payload, callback) {
   request.timeout = self.timeout;
   request.open('POST', self.host, true);
   request.setRequestHeader('Content-Type', 'application/json');
-
   request.onreadystatechange = function () {
     if (request.readyState === 4 && request.timeout !== 1) {
       var result = request.responseText; // eslint-disable-line
@@ -12090,22 +12088,18 @@ HttpProvider.prototype.sendAsync = function (payload, callback) {
       } catch (jsonError) {
         error = invalidResponseError(request, self.host);
       }
-
       callback(error, result);
     }
   };
-
   request.ontimeout = function () {
-    callback('[ethjs-provider-http] CONNECTION TIMEOUT: http request timeout after ' + self.timeout + ' ms. (i.e. your connect has timed out for whatever reason, check your provider).', null);
+    callback("[ethjs-provider-http] CONNECTION TIMEOUT: http request timeout after " + self.timeout + " ms. (i.e. your connect has timed out for whatever reason, check your provider).", null);
   };
-
   try {
     request.send(JSON.stringify(payload));
   } catch (error) {
-    callback('[ethjs-provider-http] CONNECTION ERROR: Couldn\'t connect to node \'' + self.host + '\': ' + JSON.stringify(error, null, 2), null);
+    callback("[ethjs-provider-http] CONNECTION ERROR: Couldn't connect to node '" + self.host + "': " + JSON.stringify(error, null, 2), null);
   }
 };
-
 module.exports = HttpProvider;
 
 /***/ }),
