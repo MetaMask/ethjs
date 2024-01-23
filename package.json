@@ -72,7 +72,7 @@
     "url": "https://github.com/MetaMask/ethjs/issues"
   },
   "dependencies": {
-    "@metamask/ethjs-contract": "^0.3.3",
+    "@metamask/ethjs-contract": "^0.4.1",
     "@metamask/ethjs-filter": "^0.3.0",
     "@metamask/ethjs-provider-http": "^0.3.0",
     "@metamask/ethjs-query": "^0.5.2",
