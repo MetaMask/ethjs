@@ -98,8 +98,8 @@ if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var store = __webpack_require__(40)('wks');
-var uid = __webpack_require__(41);
+var store = __webpack_require__(39)('wks');
+var uid = __webpack_require__(40);
 var Symbol = __webpack_require__(0).Symbol;
 var USE_SYMBOL = typeof Symbol == 'function';
 
@@ -1912,7 +1912,7 @@ function isnan (val) {
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(8);
+var isObject = __webpack_require__(9);
 module.exports = function (it) {
   if (!isObject(it)) throw TypeError(it + ' is not an object!');
   return it;
@@ -1950,10 +1950,30 @@ module.exports = g;
 /* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var isHexPrefixed = __webpack_require__(12);
+
+/**
+ * Removes '0x' from a given `String` is present
+ * @param {String} str the string value
+ * @return {String|Optional} a string by pass if necessary
+ */
+module.exports = function stripHexPrefix(str) {
+  if (typeof str !== 'string') {
+    return str;
+  }
+
+  return isHexPrefixed(str) ? str.slice(2) : str;
+}
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var global = __webpack_require__(0);
 var core = __webpack_require__(1);
 var ctx = __webpack_require__(16);
-var hide = __webpack_require__(7);
+var hide = __webpack_require__(8);
 var has = __webpack_require__(20);
 var PROTOTYPE = 'prototype';
 
@@ -2015,12 +2035,12 @@ module.exports = $export;
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(18);
-var createDesc = __webpack_require__(37);
-module.exports = __webpack_require__(9) ? function (object, key, value) {
+var createDesc = __webpack_require__(36);
+module.exports = __webpack_require__(10) ? function (object, key, value) {
   return dP.f(object, key, createDesc(1, value));
 } : function (object, key, value) {
   object[key] = value;
@@ -2029,7 +2049,7 @@ module.exports = __webpack_require__(9) ? function (object, key, value) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 module.exports = function (it) {
@@ -2038,7 +2058,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Thank's IE8 for his funny defineProperty
@@ -2048,256 +2068,28 @@ module.exports = !__webpack_require__(19)(function () {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports = {};
 
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(Buffer) {
-
-var isHexPrefixed = __webpack_require__(35);
-var stripHexPrefix = __webpack_require__(12);
-
-/**
- * Pads a `String` to have an even length
- * @param {String} value
- * @return {String} output
- */
-function padToEven(value) {
-  var a = value; // eslint-disable-line
-
-  if (typeof a !== 'string') {
-    throw new Error('[ethjs-util] while padding to even, value must be string, is currently ' + typeof a + ', while padToEven.');
-  }
-
-  if (a.length % 2) {
-    a = '0' + a;
-  }
-
-  return a;
-}
-
-/**
- * Converts a `Number` into a hex `String`
- * @param {Number} i
- * @return {String}
- */
-function intToHex(i) {
-  var hex = i.toString(16); // eslint-disable-line
-
-  return '0x' + hex;
-}
-
-/**
- * Converts an `Number` to a `Buffer`
- * @param {Number} i
- * @return {Buffer}
- */
-function intToBuffer(i) {
-  var hex = intToHex(i);
-
-  return new Buffer(padToEven(hex.slice(2)), 'hex');
-}
-
-/**
- * Get the binary size of a string
- * @param {String} str
- * @return {Number}
- */
-function getBinarySize(str) {
-  if (typeof str !== 'string') {
-    throw new Error('[ethjs-util] while getting binary size, method getBinarySize requires input \'str\' to be type String, got \'' + typeof str + '\'.');
-  }
-
-  return Buffer.byteLength(str, 'utf8');
-}
-
-/**
- * Returns TRUE if the first specified array contains all elements
- * from the second one. FALSE otherwise.
- *
- * @param {array} superset
- * @param {array} subset
- *
- * @returns {boolean}
- */
-function arrayContainsArray(superset, subset, some) {
-  if (Array.isArray(superset) !== true) {
-    throw new Error('[ethjs-util] method arrayContainsArray requires input \'superset\' to be an array got type \'' + typeof superset + '\'');
-  }
-  if (Array.isArray(subset) !== true) {
-    throw new Error('[ethjs-util] method arrayContainsArray requires input \'subset\' to be an array got type \'' + typeof subset + '\'');
-  }
-
-  return subset[Boolean(some) && 'some' || 'every'](function (value) {
-    return superset.indexOf(value) >= 0;
-  });
-}
-
-/**
- * Should be called to get utf8 from it's hex representation
- *
- * @method toUtf8
- * @param {String} string in hex
- * @returns {String} ascii string representation of hex value
- */
-function toUtf8(hex) {
-  var bufferValue = new Buffer(padToEven(stripHexPrefix(hex).replace(/^0+|0+$/g, '')), 'hex');
-
-  return bufferValue.toString('utf8');
-}
-
-/**
- * Should be called to get ascii from it's hex representation
- *
- * @method toAscii
- * @param {String} string in hex
- * @returns {String} ascii string representation of hex value
- */
-function toAscii(hex) {
-  var str = ''; // eslint-disable-line
-  var i = 0,
-      l = hex.length; // eslint-disable-line
-
-  if (hex.substring(0, 2) === '0x') {
-    i = 2;
-  }
-
-  for (; i < l; i += 2) {
-    var code = parseInt(hex.substr(i, 2), 16);
-    str += String.fromCharCode(code);
-  }
-
-  return str;
-}
-
-/**
- * Should be called to get hex representation (prefixed by 0x) of utf8 string
- *
- * @method fromUtf8
- * @param {String} string
- * @param {Number} optional padding
- * @returns {String} hex representation of input string
- */
-function fromUtf8(stringValue) {
-  var str = new Buffer(stringValue, 'utf8');
-
-  return '0x' + padToEven(str.toString('hex')).replace(/^0+|0+$/g, '');
-}
-
-/**
- * Should be called to get hex representation (prefixed by 0x) of ascii string
- *
- * @method fromAscii
- * @param {String} string
- * @param {Number} optional padding
- * @returns {String} hex representation of input string
- */
-function fromAscii(stringValue) {
-  var hex = ''; // eslint-disable-line
-  for (var i = 0; i < stringValue.length; i++) {
-    // eslint-disable-line
-    var code = stringValue.charCodeAt(i);
-    var n = code.toString(16);
-    hex += n.length < 2 ? '0' + n : n;
-  }
-
-  return '0x' + hex;
-}
-
-/**
- * getKeys([{a: 1, b: 2}, {a: 3, b: 4}], 'a') => [1, 3]
- *
- * @method getKeys get specific key from inner object array of objects
- * @param {String} params
- * @param {String} key
- * @param {Boolean} allowEmpty
- * @returns {Array} output just a simple array of output keys
- */
-function getKeys(params, key, allowEmpty) {
-  if (!Array.isArray(params)) {
-    throw new Error('[ethjs-util] method getKeys expecting type Array as \'params\' input, got \'' + typeof params + '\'');
-  }
-  if (typeof key !== 'string') {
-    throw new Error('[ethjs-util] method getKeys expecting type String for input \'key\' got \'' + typeof key + '\'.');
-  }
-
-  var result = []; // eslint-disable-line
-
-  for (var i = 0; i < params.length; i++) {
-    // eslint-disable-line
-    var value = params[i][key]; // eslint-disable-line
-    if (allowEmpty && !value) {
-      value = '';
-    } else if (typeof value !== 'string') {
-      throw new Error('invalid abi');
-    }
-    result.push(value);
-  }
-
-  return result;
-}
-
-/**
- * Is the string a hex string.
- *
- * @method check if string is hex string of specific length
- * @param {String} value
- * @param {Number} length
- * @returns {Boolean} output the string is a hex string
- */
-function isHexString(value, length) {
-  if (typeof value !== 'string' || !value.match(/^0x[0-9A-Fa-f]*$/)) {
-    return false;
-  }
-
-  if (length && value.length !== 2 + 2 * length) {
-    return false;
-  }
-
-  return true;
-}
-
-module.exports = {
-  arrayContainsArray: arrayContainsArray,
-  intToBuffer: intToBuffer,
-  getBinarySize: getBinarySize,
-  isHexPrefixed: isHexPrefixed,
-  stripHexPrefix: stripHexPrefix,
-  padToEven: padToEven,
-  intToHex: intToHex,
-  fromAscii: fromAscii,
-  fromUtf8: fromUtf8,
-  toAscii: toAscii,
-  toUtf8: toUtf8,
-  getKeys: getKeys,
-  isHexString: isHexString
-};
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
-
-/***/ }),
 /* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var isHexPrefixed = __webpack_require__(35);
+/***/ (function(module, exports) {
 
 /**
- * Removes '0x' from a given `String` is present
- * @param {String} str the string value
- * @return {String|Optional} a string by pass if necessary
+ * Returns a `Boolean` on whether or not the a `String` starts with '0x'
+ * @param {String} str the string input value
+ * @return {Boolean} a boolean if it is or is not hex prefixed
+ * @throws if the str input is not a string
  */
-module.exports = function stripHexPrefix(str) {
+module.exports = function isHexPrefixed(str) {
   if (typeof str !== 'string') {
-    return str;
+    throw new Error("[is-hex-prefixed] value must be type 'string', is currently type " + (typeof str) + ", while checking isHexPrefixed.");
   }
 
-  return isHexPrefixed(str) ? str.slice(2) : str;
+  return str.slice(0, 2) === '0x';
 }
 
 
@@ -2306,7 +2098,7 @@ module.exports = function stripHexPrefix(str) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var BN = __webpack_require__(14);
-var stripHexPrefix = __webpack_require__(12);
+var stripHexPrefix = __webpack_require__(6);
 
 /**
  * Returns a BN object, converts a number value to a BN
@@ -6010,11 +5802,11 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(4);
-var IE8_DOM_DEFINE = __webpack_require__(70);
-var toPrimitive = __webpack_require__(71);
+var IE8_DOM_DEFINE = __webpack_require__(71);
+var toPrimitive = __webpack_require__(72);
 var dP = Object.defineProperty;
 
-exports.f = __webpack_require__(9) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+exports.f = __webpack_require__(10) ? Object.defineProperty : function defineProperty(O, P, Attributes) {
   anObject(O);
   P = toPrimitive(P, true);
   anObject(Attributes);
@@ -6095,8 +5887,8 @@ module.exports = function(module) {
 
 "use strict";
 
-var isFn = __webpack_require__(62);
-var setImmediate = __webpack_require__(63);
+var isFn = __webpack_require__(63);
+var setImmediate = __webpack_require__(64);
 
 module.exports = function (promise) {
 	if (!isFn(promise.then)) {
@@ -6117,7 +5909,7 @@ module.exports = function (promise) {
 /* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(8);
+var isObject = __webpack_require__(9);
 var document = __webpack_require__(0).document;
 // typeof document.createElement is 'object' in old IE
 var is = isObject(document) && isObject(document.createElement);
@@ -6131,8 +5923,8 @@ module.exports = function (it) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys = __webpack_require__(73);
-var enumBugKeys = __webpack_require__(42);
+var $keys = __webpack_require__(74);
+var enumBugKeys = __webpack_require__(41);
 
 module.exports = Object.keys || function keys(O) {
   return $keys(O, enumBugKeys);
@@ -6144,7 +5936,7 @@ module.exports = Object.keys || function keys(O) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(38);
+var IObject = __webpack_require__(37);
 var defined = __webpack_require__(27);
 module.exports = function (it) {
   return IObject(defined(it));
@@ -6178,8 +5970,8 @@ module.exports = function (it) {
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var shared = __webpack_require__(40)('keys');
-var uid = __webpack_require__(41);
+var shared = __webpack_require__(39)('keys');
+var uid = __webpack_require__(40);
 module.exports = function (key) {
   return shared[key] || (shared[key] = uid(key));
 };
@@ -6234,7 +6026,7 @@ module.exports = function (it) {
     root = self;
   }
   var COMMON_JS = !root.JS_SHA3_NO_COMMON_JS && typeof module === 'object' && module.exports;
-  var AMD = "function" === 'function' && __webpack_require__(80);
+  var AMD = "function" === 'function' && __webpack_require__(81);
   var ARRAY_BUFFER = !root.JS_SHA3_NO_ARRAY_BUFFER && typeof ArrayBuffer !== 'undefined';
   var HEX_CHARS = '0123456789abcdef'.split('');
   var SHAKE_PADDING = [31, 7936, 2031616, 520093696];
@@ -6902,31 +6694,12 @@ module.exports.f = function (C) {
 
 /***/ }),
 /* 35 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-/**
- * Returns a `Boolean` on whether or not the a `String` starts with '0x'
- * @param {String} str the string input value
- * @return {Boolean} a boolean if it is or is not hex prefixed
- * @throws if the str input is not a string
- */
-module.exports = function isHexPrefixed(str) {
-  if (typeof str !== 'string') {
-    throw new Error("[is-hex-prefixed] value must be type 'string', is currently type " + (typeof str) + ", while checking isHexPrefixed.");
-  }
-
-  return str.slice(0, 2) === '0x';
-}
-
+module.exports = { "default": __webpack_require__(69), __esModule: true };
 
 /***/ }),
 /* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(68), __esModule: true };
-
-/***/ }),
-/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = function (bitmap, value) {
@@ -6940,7 +6713,7 @@ module.exports = function (bitmap, value) {
 
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
@@ -6952,7 +6725,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.15 ToLength
@@ -6964,7 +6737,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var core = __webpack_require__(1);
@@ -6982,7 +6755,7 @@ var store = global[SHARED] || (global[SHARED] = {});
 
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports) {
 
 var id = 0;
@@ -6993,7 +6766,7 @@ module.exports = function (key) {
 
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports) {
 
 // IE 8- don't enum bug keys
@@ -7003,7 +6776,7 @@ module.exports = (
 
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7011,7 +6784,7 @@ module.exports = (
 
 /* eslint-disable */
 
-var utils = __webpack_require__(78);
+var utils = __webpack_require__(79);
 var uint256Coder = utils.uint256Coder;
 var coderBoolean = utils.coderBoolean;
 var coderFixedBytes = utils.coderFixedBytes;
@@ -7197,7 +6970,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -7371,19 +7144,246 @@ function EthFilter(query) {
 module.exports = EthFilter;
 
 /***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(Buffer) {
+
+var isHexPrefixed = __webpack_require__(12);
+var stripHexPrefix = __webpack_require__(6);
+
+/**
+ * Pads a `String` to have an even length
+ * @param {String} value
+ * @return {String} output
+ */
+function padToEven(value) {
+  var a = value; // eslint-disable-line
+
+  if (typeof a !== 'string') {
+    throw new Error('[ethjs-util] while padding to even, value must be string, is currently ' + typeof a + ', while padToEven.');
+  }
+
+  if (a.length % 2) {
+    a = '0' + a;
+  }
+
+  return a;
+}
+
+/**
+ * Converts a `Number` into a hex `String`
+ * @param {Number} i
+ * @return {String}
+ */
+function intToHex(i) {
+  var hex = i.toString(16); // eslint-disable-line
+
+  return '0x' + hex;
+}
+
+/**
+ * Converts an `Number` to a `Buffer`
+ * @param {Number} i
+ * @return {Buffer}
+ */
+function intToBuffer(i) {
+  var hex = intToHex(i);
+
+  return new Buffer(padToEven(hex.slice(2)), 'hex');
+}
+
+/**
+ * Get the binary size of a string
+ * @param {String} str
+ * @return {Number}
+ */
+function getBinarySize(str) {
+  if (typeof str !== 'string') {
+    throw new Error('[ethjs-util] while getting binary size, method getBinarySize requires input \'str\' to be type String, got \'' + typeof str + '\'.');
+  }
+
+  return Buffer.byteLength(str, 'utf8');
+}
+
+/**
+ * Returns TRUE if the first specified array contains all elements
+ * from the second one. FALSE otherwise.
+ *
+ * @param {array} superset
+ * @param {array} subset
+ *
+ * @returns {boolean}
+ */
+function arrayContainsArray(superset, subset, some) {
+  if (Array.isArray(superset) !== true) {
+    throw new Error('[ethjs-util] method arrayContainsArray requires input \'superset\' to be an array got type \'' + typeof superset + '\'');
+  }
+  if (Array.isArray(subset) !== true) {
+    throw new Error('[ethjs-util] method arrayContainsArray requires input \'subset\' to be an array got type \'' + typeof subset + '\'');
+  }
+
+  return subset[Boolean(some) && 'some' || 'every'](function (value) {
+    return superset.indexOf(value) >= 0;
+  });
+}
+
+/**
+ * Should be called to get utf8 from it's hex representation
+ *
+ * @method toUtf8
+ * @param {String} string in hex
+ * @returns {String} ascii string representation of hex value
+ */
+function toUtf8(hex) {
+  var bufferValue = new Buffer(padToEven(stripHexPrefix(hex).replace(/^0+|0+$/g, '')), 'hex');
+
+  return bufferValue.toString('utf8');
+}
+
+/**
+ * Should be called to get ascii from it's hex representation
+ *
+ * @method toAscii
+ * @param {String} string in hex
+ * @returns {String} ascii string representation of hex value
+ */
+function toAscii(hex) {
+  var str = ''; // eslint-disable-line
+  var i = 0,
+      l = hex.length; // eslint-disable-line
+
+  if (hex.substring(0, 2) === '0x') {
+    i = 2;
+  }
+
+  for (; i < l; i += 2) {
+    var code = parseInt(hex.substr(i, 2), 16);
+    str += String.fromCharCode(code);
+  }
+
+  return str;
+}
+
+/**
+ * Should be called to get hex representation (prefixed by 0x) of utf8 string
+ *
+ * @method fromUtf8
+ * @param {String} string
+ * @param {Number} optional padding
+ * @returns {String} hex representation of input string
+ */
+function fromUtf8(stringValue) {
+  var str = new Buffer(stringValue, 'utf8');
+
+  return '0x' + padToEven(str.toString('hex')).replace(/^0+|0+$/g, '');
+}
+
+/**
+ * Should be called to get hex representation (prefixed by 0x) of ascii string
+ *
+ * @method fromAscii
+ * @param {String} string
+ * @param {Number} optional padding
+ * @returns {String} hex representation of input string
+ */
+function fromAscii(stringValue) {
+  var hex = ''; // eslint-disable-line
+  for (var i = 0; i < stringValue.length; i++) {
+    // eslint-disable-line
+    var code = stringValue.charCodeAt(i);
+    var n = code.toString(16);
+    hex += n.length < 2 ? '0' + n : n;
+  }
+
+  return '0x' + hex;
+}
+
+/**
+ * getKeys([{a: 1, b: 2}, {a: 3, b: 4}], 'a') => [1, 3]
+ *
+ * @method getKeys get specific key from inner object array of objects
+ * @param {String} params
+ * @param {String} key
+ * @param {Boolean} allowEmpty
+ * @returns {Array} output just a simple array of output keys
+ */
+function getKeys(params, key, allowEmpty) {
+  if (!Array.isArray(params)) {
+    throw new Error('[ethjs-util] method getKeys expecting type Array as \'params\' input, got \'' + typeof params + '\'');
+  }
+  if (typeof key !== 'string') {
+    throw new Error('[ethjs-util] method getKeys expecting type String for input \'key\' got \'' + typeof key + '\'.');
+  }
+
+  var result = []; // eslint-disable-line
+
+  for (var i = 0; i < params.length; i++) {
+    // eslint-disable-line
+    var value = params[i][key]; // eslint-disable-line
+    if (allowEmpty && !value) {
+      value = '';
+    } else if (typeof value !== 'string') {
+      throw new Error('invalid abi');
+    }
+    result.push(value);
+  }
+
+  return result;
+}
+
+/**
+ * Is the string a hex string.
+ *
+ * @method check if string is hex string of specific length
+ * @param {String} value
+ * @param {Number} length
+ * @returns {Boolean} output the string is a hex string
+ */
+function isHexString(value, length) {
+  if (typeof value !== 'string' || !value.match(/^0x[0-9A-Fa-f]*$/)) {
+    return false;
+  }
+
+  if (length && value.length !== 2 + 2 * length) {
+    return false;
+  }
+
+  return true;
+}
+
+module.exports = {
+  arrayContainsArray: arrayContainsArray,
+  intToBuffer: intToBuffer,
+  getBinarySize: getBinarySize,
+  isHexPrefixed: isHexPrefixed,
+  stripHexPrefix: stripHexPrefix,
+  padToEven: padToEven,
+  intToHex: intToHex,
+  fromAscii: fromAscii,
+  fromUtf8: fromUtf8,
+  toAscii: toAscii,
+  toUtf8: toUtf8,
+  getKeys: getKeys,
+  isHexString: isHexString
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
+
+/***/ }),
 /* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var LIBRARY = __webpack_require__(30);
-var $export = __webpack_require__(6);
-var redefine = __webpack_require__(93);
-var hide = __webpack_require__(7);
-var Iterators = __webpack_require__(10);
-var $iterCreate = __webpack_require__(94);
+var $export = __webpack_require__(7);
+var redefine = __webpack_require__(94);
+var hide = __webpack_require__(8);
+var Iterators = __webpack_require__(11);
+var $iterCreate = __webpack_require__(95);
 var setToStringTag = __webpack_require__(33);
-var getPrototypeOf = __webpack_require__(97);
+var getPrototypeOf = __webpack_require__(98);
 var ITERATOR = __webpack_require__(2)('iterator');
 var BUGGY = !([].keys && 'next' in [].keys()); // Safari has buggy iterators w/o `next`
 var FF_ITERATOR = '@@iterator';
@@ -7503,7 +7503,7 @@ module.exports = function (O, D) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var ctx = __webpack_require__(16);
-var invoke = __webpack_require__(108);
+var invoke = __webpack_require__(109);
 var html = __webpack_require__(46);
 var cel = __webpack_require__(24);
 var global = __webpack_require__(0);
@@ -7606,7 +7606,7 @@ module.exports = function (exec) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject = __webpack_require__(4);
-var isObject = __webpack_require__(8);
+var isObject = __webpack_require__(9);
 var newPromiseCapability = __webpack_require__(34);
 
 module.exports = function (C, x) {
@@ -7626,7 +7626,7 @@ module.exports = function (C, x) {
 "use strict";
 
 
-var _keys = __webpack_require__(116);
+var _keys = __webpack_require__(117);
 
 var _keys2 = _interopRequireDefault(_keys);
 
@@ -7678,16 +7678,16 @@ module.exports = __webpack_require__(54);
 /* WEBPACK VAR INJECTION */(function(Buffer) {
 
 var EthQuery = __webpack_require__(58);
-var EthFilter = __webpack_require__(66);
-var EthContract = __webpack_require__(67);
-var HttpProvider = __webpack_require__(120);
-var abi = __webpack_require__(122);
-var unit = __webpack_require__(125);
+var EthFilter = __webpack_require__(67);
+var EthContract = __webpack_require__(68);
+var HttpProvider = __webpack_require__(121);
+var abi = __webpack_require__(123);
+var unit = __webpack_require__(126);
 var keccak256 = __webpack_require__(32).keccak_256;
 var toBN = __webpack_require__(13);
 var BN = __webpack_require__(14);
-var utils = __webpack_require__(11);
-var getTransactionSuccess = __webpack_require__(131);
+var utils = __webpack_require__(132);
+var getTransactionSuccess = __webpack_require__(133);
 module.exports = Eth;
 
 /**
@@ -8008,7 +8008,7 @@ module.exports = Array.isArray || function (arr) {
 
 
 var format = __webpack_require__(59);
-var EthRPC = __webpack_require__(61);
+var EthRPC = __webpack_require__(62);
 var promiseToCallback = __webpack_require__(23);
 
 module.exports = Eth;
@@ -8120,10 +8120,10 @@ function generateFnFor(rpcMethodName, methodObject) {
 "use strict";
 
 
-var util = __webpack_require__(11);
-var schema = __webpack_require__(60);
+var util = __webpack_require__(60);
+var schema = __webpack_require__(61);
 var numberToBN = __webpack_require__(13);
-var stripHexPrefix = __webpack_require__(12);
+var stripHexPrefix = __webpack_require__(6);
 var padToEven = util.padToEven;
 var arrayContainsArray = util.arrayContainsArray;
 var getBinarySize = util.getBinarySize;
@@ -8375,12 +8375,239 @@ module.exports = {
 
 /***/ }),
 /* 60 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(Buffer) {
+
+var isHexPrefixed = __webpack_require__(12);
+var stripHexPrefix = __webpack_require__(6);
+
+/**
+ * Pads a `String` to have an even length
+ * @param {String} value
+ * @return {String} output
+ */
+function padToEven(value) {
+  var a = value; // eslint-disable-line
+
+  if (typeof a !== 'string') {
+    throw new Error('[ethjs-util] while padding to even, value must be string, is currently ' + typeof a + ', while padToEven.');
+  }
+
+  if (a.length % 2) {
+    a = '0' + a;
+  }
+
+  return a;
+}
+
+/**
+ * Converts a `Number` into a hex `String`
+ * @param {Number} i
+ * @return {String}
+ */
+function intToHex(i) {
+  var hex = i.toString(16); // eslint-disable-line
+
+  return '0x' + hex;
+}
+
+/**
+ * Converts an `Number` to a `Buffer`
+ * @param {Number} i
+ * @return {Buffer}
+ */
+function intToBuffer(i) {
+  var hex = intToHex(i);
+
+  return new Buffer(padToEven(hex.slice(2)), 'hex');
+}
+
+/**
+ * Get the binary size of a string
+ * @param {String} str
+ * @return {Number}
+ */
+function getBinarySize(str) {
+  if (typeof str !== 'string') {
+    throw new Error('[ethjs-util] while getting binary size, method getBinarySize requires input \'str\' to be type String, got \'' + typeof str + '\'.');
+  }
+
+  return Buffer.byteLength(str, 'utf8');
+}
+
+/**
+ * Returns TRUE if the first specified array contains all elements
+ * from the second one. FALSE otherwise.
+ *
+ * @param {array} superset
+ * @param {array} subset
+ *
+ * @returns {boolean}
+ */
+function arrayContainsArray(superset, subset, some) {
+  if (Array.isArray(superset) !== true) {
+    throw new Error('[ethjs-util] method arrayContainsArray requires input \'superset\' to be an array got type \'' + typeof superset + '\'');
+  }
+  if (Array.isArray(subset) !== true) {
+    throw new Error('[ethjs-util] method arrayContainsArray requires input \'subset\' to be an array got type \'' + typeof subset + '\'');
+  }
+
+  return subset[Boolean(some) && 'some' || 'every'](function (value) {
+    return superset.indexOf(value) >= 0;
+  });
+}
+
+/**
+ * Should be called to get utf8 from it's hex representation
+ *
+ * @method toUtf8
+ * @param {String} string in hex
+ * @returns {String} ascii string representation of hex value
+ */
+function toUtf8(hex) {
+  var bufferValue = new Buffer(padToEven(stripHexPrefix(hex).replace(/^0+|0+$/g, '')), 'hex');
+
+  return bufferValue.toString('utf8');
+}
+
+/**
+ * Should be called to get ascii from it's hex representation
+ *
+ * @method toAscii
+ * @param {String} string in hex
+ * @returns {String} ascii string representation of hex value
+ */
+function toAscii(hex) {
+  var str = ''; // eslint-disable-line
+  var i = 0,
+      l = hex.length; // eslint-disable-line
+
+  if (hex.substring(0, 2) === '0x') {
+    i = 2;
+  }
+
+  for (; i < l; i += 2) {
+    var code = parseInt(hex.substr(i, 2), 16);
+    str += String.fromCharCode(code);
+  }
+
+  return str;
+}
+
+/**
+ * Should be called to get hex representation (prefixed by 0x) of utf8 string
+ *
+ * @method fromUtf8
+ * @param {String} string
+ * @param {Number} optional padding
+ * @returns {String} hex representation of input string
+ */
+function fromUtf8(stringValue) {
+  var str = new Buffer(stringValue, 'utf8');
+
+  return '0x' + padToEven(str.toString('hex')).replace(/^0+|0+$/g, '');
+}
+
+/**
+ * Should be called to get hex representation (prefixed by 0x) of ascii string
+ *
+ * @method fromAscii
+ * @param {String} string
+ * @param {Number} optional padding
+ * @returns {String} hex representation of input string
+ */
+function fromAscii(stringValue) {
+  var hex = ''; // eslint-disable-line
+  for (var i = 0; i < stringValue.length; i++) {
+    // eslint-disable-line
+    var code = stringValue.charCodeAt(i);
+    var n = code.toString(16);
+    hex += n.length < 2 ? '0' + n : n;
+  }
+
+  return '0x' + hex;
+}
+
+/**
+ * getKeys([{a: 1, b: 2}, {a: 3, b: 4}], 'a') => [1, 3]
+ *
+ * @method getKeys get specific key from inner object array of objects
+ * @param {String} params
+ * @param {String} key
+ * @param {Boolean} allowEmpty
+ * @returns {Array} output just a simple array of output keys
+ */
+function getKeys(params, key, allowEmpty) {
+  if (!Array.isArray(params)) {
+    throw new Error('[ethjs-util] method getKeys expecting type Array as \'params\' input, got \'' + typeof params + '\'');
+  }
+  if (typeof key !== 'string') {
+    throw new Error('[ethjs-util] method getKeys expecting type String for input \'key\' got \'' + typeof key + '\'.');
+  }
+
+  var result = []; // eslint-disable-line
+
+  for (var i = 0; i < params.length; i++) {
+    // eslint-disable-line
+    var value = params[i][key]; // eslint-disable-line
+    if (allowEmpty && !value) {
+      value = '';
+    } else if (typeof value !== 'string') {
+      throw new Error('invalid abi');
+    }
+    result.push(value);
+  }
+
+  return result;
+}
+
+/**
+ * Is the string a hex string.
+ *
+ * @method check if string is hex string of specific length
+ * @param {String} value
+ * @param {Number} length
+ * @returns {Boolean} output the string is a hex string
+ */
+function isHexString(value, length) {
+  if (typeof value !== 'string' || !value.match(/^0x[0-9A-Fa-f]*$/)) {
+    return false;
+  }
+
+  if (length && value.length !== 2 + 2 * length) {
+    return false;
+  }
+
+  return true;
+}
+
+module.exports = {
+  arrayContainsArray: arrayContainsArray,
+  intToBuffer: intToBuffer,
+  getBinarySize: getBinarySize,
+  isHexPrefixed: isHexPrefixed,
+  stripHexPrefix: stripHexPrefix,
+  padToEven: padToEven,
+  intToHex: intToHex,
+  fromAscii: fromAscii,
+  fromUtf8: fromUtf8,
+  toAscii: toAscii,
+  toUtf8: toUtf8,
+  getKeys: getKeys,
+  isHexString: isHexString
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
+
+/***/ }),
+/* 61 */
 /***/ (function(module, exports) {
 
 module.exports = {"methods":{"web3_clientVersion":[[],"S"],"web3_sha3":[["S"],"D",1],"net_version":[[],"S"],"net_peerCount":[[],"Q"],"net_listening":[[],"B"],"personal_sign":[["D","D20","S"],"D",2],"personal_ecRecover":[["D","D"],"D20",2],"eth_protocolVersion":[[],"S"],"eth_syncing":[[],"B|EthSyncing"],"eth_coinbase":[[],"D20"],"eth_mining":[[],"B"],"eth_hashrate":[[],"Q"],"eth_gasPrice":[[],"Q"],"eth_accounts":[[],["D20"]],"eth_blockNumber":[[],"Q"],"eth_getBalance":[["D20","Q|T"],"Q",1,2],"eth_getStorageAt":[["D20","Q","Q|T"],"D",2,2],"eth_getTransactionCount":[["D20","Q|T"],"Q",1,2],"eth_getBlockTransactionCountByHash":[["D32"],"Q",1],"eth_getBlockTransactionCountByNumber":[["Q|T"],"Q",1],"eth_getUncleCountByBlockHash":[["D32"],"Q",1],"eth_getUncleCountByBlockNumber":[["Q"],"Q",1],"eth_getCode":[["D20","Q|T"],"D",1,2],"eth_sign":[["D20","D"],"D",2],"eth_signTypedData":[["Array|DATA","D20"],"D",1],"eth_sendTransaction":[["SendTransaction"],"D",1],"eth_sendRawTransaction":[["D"],"D32",1],"eth_call":[["CallTransaction","Q|T"],"D",1,2],"eth_estimateGas":[["EstimateTransaction","Q|T"],"Q",1],"eth_getBlockByHash":[["D32","B"],"Block",2],"eth_getBlockByNumber":[["Q|T","B"],"Block",2],"eth_getTransactionByHash":[["D32"],"Transaction",1],"eth_getTransactionByBlockHashAndIndex":[["D32","Q"],"Transaction",2],"eth_getTransactionByBlockNumberAndIndex":[["Q|T","Q"],"Transaction",2],"eth_getTransactionReceipt":[["D32"],"Receipt",1],"eth_getUncleByBlockHashAndIndex":[["D32","Q"],"Block",1],"eth_getUncleByBlockNumberAndIndex":[["Q|T","Q"],"Block",2],"eth_getCompilers":[[],["S"]],"eth_compileLLL":[["S"],"D",1],"eth_compileSolidity":[["S"],"D",1],"eth_compileSerpent":[["S"],"D",1],"eth_newFilter":[["Filter"],"Q",1],"eth_newBlockFilter":[[],"Q"],"eth_newPendingTransactionFilter":[[],"Q"],"eth_uninstallFilter":[["QP"],"B",1],"eth_getFilterChanges":[["QP"],["FilterChange"],1],"eth_getFilterLogs":[["QP"],["FilterChange"],1],"eth_getLogs":[["Filter"],["FilterChange"],1],"eth_getWork":[[],["D"]],"eth_submitWork":[["D","D32","D32"],"B",3],"eth_submitHashrate":[["D","D"],"B",2],"db_putString":[["S","S","S"],"B",2],"db_getString":[["S","S"],"S",2],"db_putHex":[["S","S","D"],"B",2],"db_getHex":[["S","S"],"D",2],"shh_post":[["SHHPost"],"B",1],"shh_version":[[],"S"],"shh_newIdentity":[[],"D"],"shh_hasIdentity":[["D"],"B"],"shh_newGroup":[[],"D"],"shh_addToGroup":[["D"],"B",1],"shh_newFilter":[["SHHFilter"],"Q",1],"shh_uninstallFilter":[["Q"],"B",1],"shh_getFilterChanges":[["Q"],["SHHFilterChange"],1],"shh_getMessages":[["Q"],["SHHFilterChange"],1]},"tags":["latest","earliest","pending"],"objects":{"EthSyncing":{"__required":[],"startingBlock":"Q","currentBlock":"Q","highestBlock":"Q"},"SendTransaction":{"__required":["from","data"],"from":"D20","to":"D20","gas":"Q","gasPrice":"Q","value":"Q","data":"D","nonce":"Q"},"EstimateTransaction":{"__required":[],"from":"D20","to":"D20","gas":"Q","gasPrice":"Q","value":"Q","data":"D","nonce":"Q"},"CallTransaction":{"__required":["to"],"from":"D20","to":"D20","gas":"Q","gasPrice":"Q","value":"Q","data":"D","nonce":"Q"},"Block":{"__required":[],"number":"Q","hash":"D32","parentHash":"D32","nonce":"D","sha3Uncles":"D","logsBloom":"D","transactionsRoot":"D","stateRoot":"D","receiptsRoot":"D","miner":"D","difficulty":"Q","totalDifficulty":"Q","extraData":"D","size":"Q","gasLimit":"Q","gasUsed":"Q","timestamp":"Q","transactions":["DATA|Transaction"],"uncles":["D"]},"Transaction":{"__required":[],"hash":"D32","nonce":"Q","blockHash":"D32","blockNumber":"Q","transactionIndex":"Q","from":"D20","to":"D20","value":"Q","gasPrice":"Q","gas":"Q","input":"D"},"Receipt":{"__required":[],"transactionHash":"D32","transactionIndex":"Q","blockHash":"D32","blockNumber":"Q","cumulativeGasUsed":"Q","gasUsed":"Q","contractAddress":"D20","logs":["FilterChange"]},"Filter":{"__required":[],"fromBlock":"Q|T","toBlock":"Q|T","address":"D20","topics":["D"]},"FilterChange":{"__required":[],"removed":"B","logIndex":"Q","transactionIndex":"Q","transactionHash":"D32","blockHash":"D32","blockNumber":"Q","address":"D20","data":"Array|DATA","topics":["D"]},"SHHPost":{"__required":["topics","payload","priority","ttl"],"from":"D","to":"D","topics":["D"],"payload":"D","priority":"Q","ttl":"Q"},"SHHFilter":{"__required":["topics"],"to":"D","topics":["D"]},"SHHFilterChange":{"__required":[],"hash":"D","from":"D","to":"D","expiry":"Q","ttl":"Q","sent":"Q","topics":["D"],"payload":"D","workProved":"Q"},"SHHMessage":{"__required":[],"hash":"D","from":"D","to":"D","expiry":"Q","ttl":"Q","sent":"Q","topics":["D"],"payload":"D","workProved":"Q"}}}
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8477,7 +8704,7 @@ function createPayload(data, id) {
 }
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8490,7 +8717,7 @@ module.exports = function (x) {
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8502,10 +8729,10 @@ module.exports = typeof setImmediate === 'function' ? setImmediate :
 		setTimeout.apply(null, args);
 	};
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(64).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(65).setImmediate))
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -8561,7 +8788,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(65);
+__webpack_require__(66);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -8575,7 +8802,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -8768,7 +8995,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(15)))
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -8929,23 +9156,23 @@ function EthFilter(query) {
 module.exports = EthFilter;
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _assign = __webpack_require__(36);
+var _assign = __webpack_require__(35);
 
 var _assign2 = _interopRequireDefault(_assign);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var abi = __webpack_require__(43); // eslint-disable-line
+var abi = __webpack_require__(42); // eslint-disable-line
 var keccak256 = __webpack_require__(32).keccak_256; // eslint-disable-line
-var EthFilter = __webpack_require__(44); // eslint-disable-line
-var getKeys = __webpack_require__(11).getKeys; // eslint-disable-line
-var Contract = __webpack_require__(81);
+var EthFilter = __webpack_require__(43); // eslint-disable-line
+var getKeys = __webpack_require__(44).getKeys; // eslint-disable-line
+var Contract = __webpack_require__(82);
 var hasTransactionObject = __webpack_require__(52);
 
 module.exports = EthContract;
@@ -9009,38 +9236,38 @@ function getConstructorFromABI(contractABI) {
 }
 
 /***/ }),
-/* 68 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(69);
-module.exports = __webpack_require__(1).Object.assign;
-
-
-/***/ }),
 /* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.3.1 Object.assign(target, source)
-var $export = __webpack_require__(6);
-
-$export($export.S + $export.F, 'Object', { assign: __webpack_require__(72) });
+__webpack_require__(70);
+module.exports = __webpack_require__(1).Object.assign;
 
 
 /***/ }),
 /* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = !__webpack_require__(9) && !__webpack_require__(19)(function () {
-  return Object.defineProperty(__webpack_require__(24)('div'), 'a', { get: function () { return 7; } }).a != 7;
-});
+// 19.1.3.1 Object.assign(target, source)
+var $export = __webpack_require__(7);
+
+$export($export.S + $export.F, 'Object', { assign: __webpack_require__(73) });
 
 
 /***/ }),
 /* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
+module.exports = !__webpack_require__(10) && !__webpack_require__(19)(function () {
+  return Object.defineProperty(__webpack_require__(24)('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
 // 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(8);
+var isObject = __webpack_require__(9);
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
 module.exports = function (it, S) {
@@ -9054,17 +9281,17 @@ module.exports = function (it, S) {
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys = __webpack_require__(25);
-var gOPS = __webpack_require__(76);
-var pIE = __webpack_require__(77);
+var gOPS = __webpack_require__(77);
+var pIE = __webpack_require__(78);
 var toObject = __webpack_require__(31);
-var IObject = __webpack_require__(38);
+var IObject = __webpack_require__(37);
 var $assign = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
@@ -9095,12 +9322,12 @@ module.exports = !$assign || __webpack_require__(19)(function () {
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var has = __webpack_require__(20);
 var toIObject = __webpack_require__(26);
-var arrayIndexOf = __webpack_require__(74)(false);
+var arrayIndexOf = __webpack_require__(75)(false);
 var IE_PROTO = __webpack_require__(29)('IE_PROTO');
 
 module.exports = function (object, names) {
@@ -9118,14 +9345,14 @@ module.exports = function (object, names) {
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // false -> Array#indexOf
 // true  -> Array#includes
 var toIObject = __webpack_require__(26);
-var toLength = __webpack_require__(39);
-var toAbsoluteIndex = __webpack_require__(75);
+var toLength = __webpack_require__(38);
+var toAbsoluteIndex = __webpack_require__(76);
 module.exports = function (IS_INCLUDES) {
   return function ($this, el, fromIndex) {
     var O = toIObject($this);
@@ -9147,7 +9374,7 @@ module.exports = function (IS_INCLUDES) {
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(28);
@@ -9160,21 +9387,21 @@ module.exports = function (index, length) {
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -9182,7 +9409,7 @@ exports.f = {}.propertyIsEnumerable;
 
 var BN = __webpack_require__(14);
 var numberToBN = __webpack_require__(13);
-var keccak256 = __webpack_require__(79).keccak_256;
+var keccak256 = __webpack_require__(80).keccak_256;
 
 // from ethereumjs-util
 function stripZeros(aInput) {
@@ -9598,7 +9825,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/**
@@ -10076,7 +10303,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15), __webpack_require__(5)))
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
@@ -10085,33 +10312,33 @@ module.exports = __webpack_amd_options__;
 /* WEBPACK VAR INJECTION */}.call(exports, {}))
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _regenerator = __webpack_require__(82);
+var _regenerator = __webpack_require__(83);
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
 
-var _stringify = __webpack_require__(85);
+var _stringify = __webpack_require__(86);
 
 var _stringify2 = _interopRequireDefault(_stringify);
 
-var _asyncToGenerator2 = __webpack_require__(87);
+var _asyncToGenerator2 = __webpack_require__(88);
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
 
-var _assign = __webpack_require__(36);
+var _assign = __webpack_require__(35);
 
 var _assign2 = _interopRequireDefault(_assign);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-var abi = __webpack_require__(43); // eslint-disable-line
-var EthFilter = __webpack_require__(44); // eslint-disable-line
-var getKeys = __webpack_require__(11).getKeys; // eslint-disable-line
+var abi = __webpack_require__(42); // eslint-disable-line
+var EthFilter = __webpack_require__(43); // eslint-disable-line
+var getKeys = __webpack_require__(44).getKeys; // eslint-disable-line
 var keccak256 = __webpack_require__(32).keccak_256; // eslint-disable-line
 var hasTransactionObject = __webpack_require__(52);
 var promiseToCallback = __webpack_require__(23);
@@ -10248,14 +10475,14 @@ function getCallableMethodsFromABI(contractABI) {
 }
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(83);
+module.exports = __webpack_require__(84);
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -10280,7 +10507,7 @@ var oldRuntime = hadRuntime && g.regeneratorRuntime;
 // Force reevalutation of runtime.js.
 g.regeneratorRuntime = undefined;
 
-module.exports = __webpack_require__(84);
+module.exports = __webpack_require__(85);
 
 if (hadRuntime) {
   // Restore the original runtime.
@@ -10296,7 +10523,7 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports) {
 
 /**
@@ -11029,13 +11256,13 @@ if (hadRuntime) {
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = { "default": __webpack_require__(86), __esModule: true };
+module.exports = { "default": __webpack_require__(87), __esModule: true };
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var core = __webpack_require__(1);
@@ -11046,7 +11273,7 @@ module.exports = function stringify(it) { // eslint-disable-line no-unused-vars
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11054,7 +11281,7 @@ module.exports = function stringify(it) { // eslint-disable-line no-unused-vars
 
 exports.__esModule = true;
 
-var _promise = __webpack_require__(88);
+var _promise = __webpack_require__(89);
 
 var _promise2 = _interopRequireDefault(_promise);
 
@@ -11090,37 +11317,37 @@ exports.default = function (fn) {
 };
 
 /***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(89), __esModule: true };
-
-/***/ }),
 /* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(90);
+module.exports = { "default": __webpack_require__(90), __esModule: true };
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
 __webpack_require__(91);
-__webpack_require__(98);
-__webpack_require__(102);
-__webpack_require__(114);
+__webpack_require__(92);
+__webpack_require__(99);
+__webpack_require__(103);
 __webpack_require__(115);
+__webpack_require__(116);
 module.exports = __webpack_require__(1).Promise;
 
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var $at = __webpack_require__(92)(true);
+var $at = __webpack_require__(93)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
 __webpack_require__(45)(String, 'String', function (iterated) {
@@ -11139,7 +11366,7 @@ __webpack_require__(45)(String, 'String', function (iterated) {
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(28);
@@ -11162,25 +11389,25 @@ module.exports = function (TO_STRING) {
 
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(7);
+module.exports = __webpack_require__(8);
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var create = __webpack_require__(95);
-var descriptor = __webpack_require__(37);
+var create = __webpack_require__(96);
+var descriptor = __webpack_require__(36);
 var setToStringTag = __webpack_require__(33);
 var IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(7)(IteratorPrototype, __webpack_require__(2)('iterator'), function () { return this; });
+__webpack_require__(8)(IteratorPrototype, __webpack_require__(2)('iterator'), function () { return this; });
 
 module.exports = function (Constructor, NAME, next) {
   Constructor.prototype = create(IteratorPrototype, { next: descriptor(1, next) });
@@ -11189,13 +11416,13 @@ module.exports = function (Constructor, NAME, next) {
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject = __webpack_require__(4);
-var dPs = __webpack_require__(96);
-var enumBugKeys = __webpack_require__(42);
+var dPs = __webpack_require__(97);
+var enumBugKeys = __webpack_require__(41);
 var IE_PROTO = __webpack_require__(29)('IE_PROTO');
 var Empty = function () { /* empty */ };
 var PROTOTYPE = 'prototype';
@@ -11236,14 +11463,14 @@ module.exports = Object.create || function create(O, Properties) {
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP = __webpack_require__(18);
 var anObject = __webpack_require__(4);
 var getKeys = __webpack_require__(25);
 
-module.exports = __webpack_require__(9) ? Object.defineProperties : function defineProperties(O, Properties) {
+module.exports = __webpack_require__(10) ? Object.defineProperties : function defineProperties(O, Properties) {
   anObject(O);
   var keys = getKeys(Properties);
   var length = keys.length;
@@ -11255,7 +11482,7 @@ module.exports = __webpack_require__(9) ? Object.defineProperties : function def
 
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
@@ -11274,13 +11501,13 @@ module.exports = Object.getPrototypeOf || function (O) {
 
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(99);
+__webpack_require__(100);
 var global = __webpack_require__(0);
-var hide = __webpack_require__(7);
-var Iterators = __webpack_require__(10);
+var hide = __webpack_require__(8);
+var Iterators = __webpack_require__(11);
 var TO_STRING_TAG = __webpack_require__(2)('toStringTag');
 
 var DOMIterables = ('CSSRuleList,CSSStyleDeclaration,CSSValueList,ClientRectList,DOMRectList,DOMStringList,' +
@@ -11299,14 +11526,14 @@ for (var i = 0; i < DOMIterables.length; i++) {
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var addToUnscopables = __webpack_require__(100);
-var step = __webpack_require__(101);
-var Iterators = __webpack_require__(10);
+var addToUnscopables = __webpack_require__(101);
+var step = __webpack_require__(102);
+var Iterators = __webpack_require__(11);
 var toIObject = __webpack_require__(26);
 
 // 22.1.3.4 Array.prototype.entries()
@@ -11340,14 +11567,14 @@ addToUnscopables('entries');
 
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports) {
 
 module.exports = function () { /* empty */ };
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports) {
 
 module.exports = function (done, value) {
@@ -11356,7 +11583,7 @@ module.exports = function (done, value) {
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11365,17 +11592,17 @@ var LIBRARY = __webpack_require__(30);
 var global = __webpack_require__(0);
 var ctx = __webpack_require__(16);
 var classof = __webpack_require__(47);
-var $export = __webpack_require__(6);
-var isObject = __webpack_require__(8);
+var $export = __webpack_require__(7);
+var isObject = __webpack_require__(9);
 var aFunction = __webpack_require__(17);
-var anInstance = __webpack_require__(103);
-var forOf = __webpack_require__(104);
+var anInstance = __webpack_require__(104);
+var forOf = __webpack_require__(105);
 var speciesConstructor = __webpack_require__(48);
 var task = __webpack_require__(49).set;
-var microtask = __webpack_require__(109)();
+var microtask = __webpack_require__(110)();
 var newPromiseCapabilityModule = __webpack_require__(34);
 var perform = __webpack_require__(50);
-var userAgent = __webpack_require__(110);
+var userAgent = __webpack_require__(111);
 var promiseResolve = __webpack_require__(51);
 var PROMISE = 'Promise';
 var TypeError = global.TypeError;
@@ -11551,7 +11778,7 @@ if (!USE_NATIVE) {
     this._h = 0;              // <- rejection state, 0 - default, 1 - handled, 2 - unhandled
     this._n = false;          // <- notify
   };
-  Internal.prototype = __webpack_require__(111)($Promise.prototype, {
+  Internal.prototype = __webpack_require__(112)($Promise.prototype, {
     // 25.4.5.3 Promise.prototype.then(onFulfilled, onRejected)
     then: function then(onFulfilled, onRejected) {
       var reaction = newPromiseCapability(speciesConstructor(this, $Promise));
@@ -11583,7 +11810,7 @@ if (!USE_NATIVE) {
 
 $export($export.G + $export.W + $export.F * !USE_NATIVE, { Promise: $Promise });
 __webpack_require__(33)($Promise, PROMISE);
-__webpack_require__(112)(PROMISE);
+__webpack_require__(113)(PROMISE);
 Wrapper = __webpack_require__(1)[PROMISE];
 
 // statics
@@ -11602,7 +11829,7 @@ $export($export.S + $export.F * (LIBRARY || !USE_NATIVE), PROMISE, {
     return promiseResolve(LIBRARY && this === Wrapper ? $Promise : this, x);
   }
 });
-$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(113)(function (iter) {
+$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(114)(function (iter) {
   $Promise.all(iter)['catch'](empty);
 })), PROMISE, {
   // 25.4.4.1 Promise.all(iterable)
@@ -11649,7 +11876,7 @@ $export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(113)(functio
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports) {
 
 module.exports = function (it, Constructor, name, forbiddenField) {
@@ -11660,15 +11887,15 @@ module.exports = function (it, Constructor, name, forbiddenField) {
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ctx = __webpack_require__(16);
-var call = __webpack_require__(105);
-var isArrayIter = __webpack_require__(106);
+var call = __webpack_require__(106);
+var isArrayIter = __webpack_require__(107);
 var anObject = __webpack_require__(4);
-var toLength = __webpack_require__(39);
-var getIterFn = __webpack_require__(107);
+var toLength = __webpack_require__(38);
+var getIterFn = __webpack_require__(108);
 var BREAK = {};
 var RETURN = {};
 var exports = module.exports = function (iterable, entries, fn, that, ITERATOR) {
@@ -11691,7 +11918,7 @@ exports.RETURN = RETURN;
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // call something on iterator step with safe closing on error
@@ -11709,11 +11936,11 @@ module.exports = function (iterator, fn, value, entries) {
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // check on default Array iterator
-var Iterators = __webpack_require__(10);
+var Iterators = __webpack_require__(11);
 var ITERATOR = __webpack_require__(2)('iterator');
 var ArrayProto = Array.prototype;
 
@@ -11723,12 +11950,12 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var classof = __webpack_require__(47);
 var ITERATOR = __webpack_require__(2)('iterator');
-var Iterators = __webpack_require__(10);
+var Iterators = __webpack_require__(11);
 module.exports = __webpack_require__(1).getIteratorMethod = function (it) {
   if (it != undefined) return it[ITERATOR]
     || it['@@iterator']
@@ -11737,7 +11964,7 @@ module.exports = __webpack_require__(1).getIteratorMethod = function (it) {
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports) {
 
 // fast apply, http://jsperf.lnkit.com/fast-apply/5
@@ -11759,7 +11986,7 @@ module.exports = function (fn, args, that) {
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(0);
@@ -11834,7 +12061,7 @@ module.exports = function () {
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(0);
@@ -11844,10 +12071,10 @@ module.exports = navigator && navigator.userAgent || '';
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var hide = __webpack_require__(7);
+var hide = __webpack_require__(8);
 module.exports = function (target, src, safe) {
   for (var key in src) {
     if (safe && target[key]) target[key] = src[key];
@@ -11857,7 +12084,7 @@ module.exports = function (target, src, safe) {
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -11865,7 +12092,7 @@ module.exports = function (target, src, safe) {
 var global = __webpack_require__(0);
 var core = __webpack_require__(1);
 var dP = __webpack_require__(18);
-var DESCRIPTORS = __webpack_require__(9);
+var DESCRIPTORS = __webpack_require__(10);
 var SPECIES = __webpack_require__(2)('species');
 
 module.exports = function (KEY) {
@@ -11878,7 +12105,7 @@ module.exports = function (KEY) {
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ITERATOR = __webpack_require__(2)('iterator');
@@ -11906,13 +12133,13 @@ module.exports = function (exec, skipClosing) {
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 // https://github.com/tc39/proposal-promise-finally
 
-var $export = __webpack_require__(6);
+var $export = __webpack_require__(7);
 var core = __webpack_require__(1);
 var global = __webpack_require__(0);
 var speciesConstructor = __webpack_require__(48);
@@ -11933,13 +12160,13 @@ $export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/tc39/proposal-promise-try
-var $export = __webpack_require__(6);
+var $export = __webpack_require__(7);
 var newPromiseCapability = __webpack_require__(34);
 var perform = __webpack_require__(50);
 
@@ -11952,28 +12179,28 @@ $export($export.S, 'Promise', { 'try': function (callbackfn) {
 
 
 /***/ }),
-/* 116 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = { "default": __webpack_require__(117), __esModule: true };
-
-/***/ }),
 /* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(118);
+module.exports = { "default": __webpack_require__(118), __esModule: true };
+
+/***/ }),
+/* 118 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(119);
 module.exports = __webpack_require__(1).Object.keys;
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 Object.keys(O)
 var toObject = __webpack_require__(31);
 var $keys = __webpack_require__(25);
 
-__webpack_require__(119)('keys', function () {
+__webpack_require__(120)('keys', function () {
   return function keys(it) {
     return $keys(toObject(it));
   };
@@ -11981,11 +12208,11 @@ __webpack_require__(119)('keys', function () {
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // most Object methods by ES6 should accept primitives
-var $export = __webpack_require__(6);
+var $export = __webpack_require__(7);
 var core = __webpack_require__(1);
 var fails = __webpack_require__(19);
 module.exports = function (KEY, exec) {
@@ -11997,7 +12224,7 @@ module.exports = function (KEY, exec) {
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12012,7 +12239,7 @@ module.exports = function (KEY, exec) {
  */
 
 // workaround to use httpprovider in different envs
-var XHR2 = __webpack_require__(121);
+var XHR2 = __webpack_require__(122);
 
 /*
 ""
@@ -12103,14 +12330,14 @@ HttpProvider.prototype.sendAsync = function (payload, callback) {
 module.exports = HttpProvider;
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports) {
 
 module.exports = XMLHttpRequest;
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12118,7 +12345,7 @@ module.exports = XMLHttpRequest;
 
 /* eslint-disable */
 
-var utils = __webpack_require__(123);
+var utils = __webpack_require__(124);
 var uint256Coder = utils.uint256Coder;
 var coderBoolean = utils.coderBoolean;
 var coderFixedBytes = utils.coderFixedBytes;
@@ -12320,7 +12547,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12328,7 +12555,7 @@ module.exports = {
 
 var BN = __webpack_require__(14);
 var numberToBN = __webpack_require__(13);
-var keccak256 = __webpack_require__(124).keccak_256;
+var keccak256 = __webpack_require__(125).keccak_256;
 
 // from ethereumjs-util
 function stripZeros(aInput) {
@@ -12744,7 +12971,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process, global) {/**
@@ -13222,7 +13449,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15), __webpack_require__(5)))
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13236,8 +13463,8 @@ https://github.com/ethers-io
 Note, Richard is a god of ether gods. Follow and respect him, and use Ethers.io!
 */
 
-var BN = __webpack_require__(126);
-var numberToBN = __webpack_require__(128);
+var BN = __webpack_require__(127);
+var numberToBN = __webpack_require__(129);
 var zero = new BN(0);
 var negative1 = new BN(-1);
 
@@ -13415,7 +13642,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {(function (module, exports) {
@@ -13473,7 +13700,7 @@ module.exports = {
     if (typeof window !== 'undefined' && typeof window.Buffer !== 'undefined') {
       Buffer = window.Buffer;
     } else {
-      Buffer = __webpack_require__(127).Buffer;
+      Buffer = __webpack_require__(128).Buffer;
     }
   } catch (e) {
   }
@@ -16969,17 +17196,17 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)(module)))
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var BN = __webpack_require__(129);
-var stripHexPrefix = __webpack_require__(12);
+var BN = __webpack_require__(130);
+var stripHexPrefix = __webpack_require__(6);
 
 /**
  * Returns a BN object, converts a number value to a BN
@@ -17019,7 +17246,7 @@ module.exports = function numberToBN(arg) {
 
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {(function (module, exports) {
@@ -17077,7 +17304,7 @@ module.exports = function numberToBN(arg) {
     if (typeof window !== 'undefined' && typeof window.Buffer !== 'undefined') {
       Buffer = window.Buffer;
     } else {
-      Buffer = __webpack_require__(130).Buffer;
+      Buffer = __webpack_require__(131).Buffer;
     }
   } catch (e) {
   }
@@ -20573,13 +20800,225 @@ module.exports = function numberToBN(arg) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22)(module)))
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports) {
 
 /* (ignored) */
 
 /***/ }),
-/* 131 */
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(Buffer) {
+
+var isHexPrefixed = __webpack_require__(12);
+var stripHexPrefix = __webpack_require__(6);
+
+/**
+ * Pads a `String` to have an even length
+ * @param {String} value
+ * @return {String} output
+ */
+function padToEven(value) {
+  var a = value; // eslint-disable-line
+
+  if (typeof a !== 'string') {
+    throw new Error("[ethjs-util] while padding to even, value must be string, is currently " + typeof a + ", while padToEven.");
+  }
+  if (a.length % 2) {
+    a = "0" + a;
+  }
+  return a;
+}
+
+/**
+ * Converts a `Number` into a hex `String`
+ * @param {Number} i
+ * @return {String}
+ */
+function intToHex(i) {
+  var hex = i.toString(16); // eslint-disable-line
+
+  return "0x" + hex;
+}
+
+/**
+ * Converts an `Number` to a `Buffer`
+ * @param {Number} i
+ * @return {Buffer}
+ */
+function intToBuffer(i) {
+  var hex = intToHex(i);
+  return Buffer.from(padToEven(hex.slice(2)), 'hex');
+}
+
+/**
+ * Get the binary size of a string
+ * @param {String} str
+ * @return {Number}
+ */
+function getBinarySize(str) {
+  if (typeof str !== 'string') {
+    throw new Error("[ethjs-util] while getting binary size, method getBinarySize requires input 'str' to be type String, got '" + typeof str + "'.");
+  }
+  return Buffer.byteLength(str, 'utf8');
+}
+
+/**
+ * Returns TRUE if the first specified array contains all elements
+ * from the second one. FALSE otherwise.
+ *
+ * @param {array} superset
+ * @param {array} subset
+ *
+ * @returns {boolean}
+ */
+function arrayContainsArray(superset, subset, some) {
+  if (Array.isArray(superset) !== true) {
+    throw new Error("[ethjs-util] method arrayContainsArray requires input 'superset' to be an array got type '" + typeof superset + "'");
+  }
+  if (Array.isArray(subset) !== true) {
+    throw new Error("[ethjs-util] method arrayContainsArray requires input 'subset' to be an array got type '" + typeof subset + "'");
+  }
+  return subset[Boolean(some) && 'some' || 'every'](function (value) {
+    return superset.indexOf(value) >= 0;
+  });
+}
+
+/**
+ * Should be called to get utf8 from it's hex representation
+ *
+ * @method toUtf8
+ * @param {String} string in hex
+ * @returns {String} ascii string representation of hex value
+ */
+function toUtf8(hex) {
+  var bufferValue = Buffer.from(padToEven(stripHexPrefix(hex).replace(/^0+|0+$/g, '')), 'hex');
+  return bufferValue.toString('utf8');
+}
+
+/**
+ * Should be called to get ascii from it's hex representation
+ *
+ * @method toAscii
+ * @param {String} string in hex
+ * @returns {String} ascii string representation of hex value
+ */
+function toAscii(hex) {
+  var str = ''; // eslint-disable-line
+  var i = 0,
+    l = hex.length; // eslint-disable-line
+
+  if (hex.substring(0, 2) === '0x') {
+    i = 2;
+  }
+  for (; i < l; i += 2) {
+    var code = parseInt(hex.substr(i, 2), 16);
+    str += String.fromCharCode(code);
+  }
+  return str;
+}
+
+/**
+ * Should be called to get hex representation (prefixed by 0x) of utf8 string
+ *
+ * @method fromUtf8
+ * @param {String} string
+ * @param {Number} optional padding
+ * @returns {String} hex representation of input string
+ */
+function fromUtf8(stringValue) {
+  var str = Buffer.from(stringValue, 'utf8');
+  return "0x" + padToEven(str.toString('hex')).replace(/^0+|0+$/g, '');
+}
+
+/**
+ * Should be called to get hex representation (prefixed by 0x) of ascii string
+ *
+ * @method fromAscii
+ * @param {String} string
+ * @param {Number} optional padding
+ * @returns {String} hex representation of input string
+ */
+function fromAscii(stringValue) {
+  var hex = ''; // eslint-disable-line
+  for (var i = 0; i < stringValue.length; i++) {
+    // eslint-disable-line
+    var code = stringValue.charCodeAt(i);
+    var n = code.toString(16);
+    hex += n.length < 2 ? "0" + n : n;
+  }
+  return "0x" + hex;
+}
+
+/**
+ * getKeys([{a: 1, b: 2}, {a: 3, b: 4}], 'a') => [1, 3]
+ *
+ * @method getKeys get specific key from inner object array of objects
+ * @param {String} params
+ * @param {String} key
+ * @param {Boolean} allowEmpty
+ * @returns {Array} output just a simple array of output keys
+ */
+function getKeys(params, key, allowEmpty) {
+  if (!Array.isArray(params)) {
+    throw new Error("[ethjs-util] method getKeys expecting type Array as 'params' input, got '" + typeof params + "'");
+  }
+  if (typeof key !== 'string') {
+    throw new Error("[ethjs-util] method getKeys expecting type String for input 'key' got '" + typeof key + "'.");
+  }
+  var result = []; // eslint-disable-line
+
+  for (var i = 0; i < params.length; i++) {
+    // eslint-disable-line
+    var value = params[i][key]; // eslint-disable-line
+    if (allowEmpty && !value) {
+      value = '';
+    } else if (typeof value !== 'string') {
+      throw new Error('invalid abi');
+    }
+    result.push(value);
+  }
+  return result;
+}
+
+/**
+ * Is the string a hex string.
+ *
+ * @method check if string is hex string of specific length
+ * @param {String} value
+ * @param {Number} length
+ * @returns {Boolean} output the string is a hex string
+ */
+function isHexString(value, length) {
+  if (typeof value !== 'string' || !value.match(/^0x[0-9A-Fa-f]*$/)) {
+    return false;
+  }
+  if (length && value.length !== 2 + 2 * length) {
+    return false;
+  }
+  return true;
+}
+module.exports = {
+  arrayContainsArray: arrayContainsArray,
+  intToBuffer: intToBuffer,
+  getBinarySize: getBinarySize,
+  isHexPrefixed: isHexPrefixed,
+  stripHexPrefix: stripHexPrefix,
+  padToEven: padToEven,
+  intToHex: intToHex,
+  fromAscii: fromAscii,
+  fromUtf8: fromUtf8,
+  toAscii: toAscii,
+  toUtf8: toUtf8,
+  getKeys: getKeys,
+  isHexString: isHexString
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3).Buffer))
+
+/***/ }),
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
