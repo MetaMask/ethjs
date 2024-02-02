@@ -78,10 +78,10 @@
     "@metamask/ethjs-query": "^0.7.1",
     "@metamask/ethjs-unit": "^0.3.0",
     "@metamask/ethjs-util": "^0.3.0",
-    "bn.js": "4.11.6",
+    "@metamask/number-to-bn": "1.7.1",
+    "bn.js": "5.2.1",
     "ethjs-abi": "0.2.1",
-    "js-sha3": "^0.9.2",
-    "number-to-bn": "1.7.0"
+    "js-sha3": "^0.9.2"
   },
   "description": "A light-weight, highly optimised JS utility for Ethereum",
   "devDependencies": {
