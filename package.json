@@ -78,8 +78,6 @@
     "@metamask/ethjs-query": "^0.7.1",
     "@metamask/ethjs-unit": "^0.3.0",
     "@metamask/ethjs-util": "^0.3.0",
-    "@metamask/number-to-bn": "1.7.1",
-    "bn.js": "5.2.1",
     "ethjs-abi": "0.2.1",
     "js-sha3": "^0.9.2"
   },
@@ -110,6 +108,7 @@
     "@babel/plugin-transform-object-rest-spread": "^7.0.0",
     "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.0",
+    "bn.js": "5.2.1",
     "chai": "^4.3.10",
     "cross-env": "^6.0.3",
     "eslint": "^5.4.0",

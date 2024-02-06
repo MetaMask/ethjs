@@ -5,8 +5,6 @@ const HttpProvider = require('@metamask/ethjs-provider-http');
 const abi = require('ethjs-abi');
 const unit = require('@metamask/ethjs-unit');
 const keccak256 = require('js-sha3').keccak_256;
-const toBN = require('@metamask/number-to-bn');
-const BN = require('bn.js');
 const utils = require('@metamask/ethjs-util');
 const getTransactionSuccess = require('./lib/getTransactionSuccess.js');
 
@@ -37,14 +35,12 @@ function Eth(cprovider, options) {
   self.getTransactionSuccess = getTransactionSuccess(self);
 }
 
-Eth.BN = BN;
 Eth.isAddress = val => utils.isHexString(val, 20);
 Eth.keccak256 = val => `0x${keccak256(val)}`;
 Eth.Buffer = Buffer;
 Eth.isHexString = utils.isHexString;
 Eth.fromWei = unit.fromWei;
 Eth.toWei = unit.toWei;
-Eth.toBN = toBN;
 Eth.abi = abi;
 Eth.fromAscii = utils.fromAscii;
 Eth.toAscii = utils.toAscii;

@@ -150,11 +150,9 @@ Ethereum uses very large numbers for handling currency amounts and number storag
 
 There are **no decimal numbers on the blockchain**. All numbers must be converted to integers and then to hex format for chain storage and use. You must be very careful when handling large numbers. When working with Ethereum number values, try to avoid or never use actual Number type values (i.e. `value: 45038000000,`) or decimal numbers (`value: 1000.003`). This may lead to incorrect values conversion, number precision loss or worse, all your or your users ether!
 
-Try to **always use `BN` Big Numbers** or if you have to strings. `ethjs` will attempt to convert your type `String` number into a BN properly, however, the best way is to always provide a type Object `BN` instance (e.g. `value: new Eth.BN('4000001'),` instead of `value: 4000001,`).
+Try to **always use `BN` Big Numbers** or if you have to strings. `ethjs` will attempt to convert your type `String` number into a BN properly, however, the best way is to always provide a type Object `BN` instance (e.g. `value: new require('bn.js')('4000001'),` instead of `value: 4000001,`).
 
 If you have to handle decimal amounts of value like `ether` (e.g. `4500.302 ether`), simply convert the value down to `wei` using the toWei method (e.g. `Eth.toWei('4500.302', 'ether')`) and then do your handling with BN.
-
-The BN object comes equip with numerous mathamatical operators and methods.
 
 ### BN.js API
 
@@ -162,13 +160,11 @@ The BN object comes equip with numerous mathamatical operators and methods.
 
 ## API Design
 
-* [Eth.BN](#ethbn)
 * [Eth.isAddress](#ethisaddress)
 * [Eth.keccak256](#ethkeccak256)
 * [Eth.isHexString](#ethishexstring)
 * [Eth.fromWei](#ethfromwei)
 * [Eth.toWei](#ethtowei)
-* [Eth.toBN](#ethtobn)
 * [Eth.fromAscii](#ethfromascii)
 * [Eth.toAscii](#ethtoascii)
 * [Eth.fromUtf8](#ethfromutf8)

@@ -48,15 +48,6 @@ describe('eth.js', () => {
     });
   });
 
-  describe('BN', () => {
-    it('should function normally', () => {
-      const val = '435348973849579834789378934';
-
-      assert.equal(typeof Eth.BN, 'function');
-      assert.equal(new Eth.BN(val).toString(10), val);
-    });
-  });
-
   describe('isAddress', () => {
     it('should function normally', () => {
       const addr = '0x6e0E0e02377Bc1d90E8a7c21f12BA385C2C35f78';
@@ -131,30 +122,6 @@ describe('eth.js', () => {
 
       assert.equal(typeof Eth.toWei, 'function');
       assert.equal(Eth.toWei(val, 'ether').toString(10), '687676000000000000000000');
-    });
-  });
-
-  describe('toBN', () => {
-    it('should function normally', () => {
-      const testCases = [
-        { actual: 55, expected: new Eth.BN(55) },
-        { actual: '55', expected: new Eth.BN('55') },
-        { actual: '0x0a', expected: new Eth.BN('a', 16) },
-        { actual: '0a', expected: new Eth.BN('a', 16) },
-        { actual: 0, expected: new Eth.BN(0) },
-        { actual: 1, expected: new Eth.BN(1) },
-        { actual: -1, expected: new Eth.BN(-1) },
-        { actual: 3490853908345, expected: new Eth.BN(3490853908345) },
-        { actual: '238473873297432987489723234239728974', expected: new Eth.BN('238473873297432987489723234239728974') },
-        { actual: new Eth.BN(234023984), expected: new Eth.BN(234023984) },
-        { actual: new Eth.BN(0), expected: new Eth.BN(0) },
-      ];
-
-      assert.equal(typeof Eth.toBN, 'function');
-
-      testCases.forEach((testCase) => {
-        assert.deepEqual(Eth.toBN(testCase.actual).toString(10), testCase.expected.toString(10));
-      });
     });
   });
 

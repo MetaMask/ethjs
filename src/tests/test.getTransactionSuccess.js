@@ -1,3 +1,4 @@
+const BN = require('bn.js');
 const { assert } = require('chai');
 const TestRPC = require('ganache-cli');
 
@@ -14,7 +15,7 @@ describe('getTransactionSuccess.js', () => {
       const defaultTxObject = {
         from: accounts[0],
         to: accounts[1],
-        value: (new Eth.BN('4500')),
+        value: (new BN('4500')),
         data: '0x',
         gas: 300000,
       };
