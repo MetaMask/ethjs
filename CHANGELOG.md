@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0]
+### Uncategorized
+- BREAKING: update bn.js from 4.11.6 to 5.2.1
+- deps: @metamask/ethjs-query@^0.5.2->^0.7.1
+- deps: @metamask/ethjs-contract@^0.3.3->^0.4.1
+- deps: @metamask/ethjs-util@^0.2.1->^0.3.0
+- deps: @metamask/ethjs-unit@^0.2.1->^0.3.0
+- deps: @metamask/ethjs-provider-http@^0.2.0->^0.3.0
+- deps: @metamask/ethjs-filter@^0.2.0->^0.3.0
+- build(deps): bump minimist and handlebars
+- devDeps: babel-*@6 -> @babel/*@^7 ([#17](https://github.com/MetaMask/ethjs/pull/17))
+
 ## [0.5.1]
 ### Changed
 - Replace `ethjs` packages with `@metamask/` forks ([#12](https://github.com/MetaMask/ethjs/pull/12)) ([#16](https://github.com/MetaMask/ethjs/pull/16))
@@ -88,7 +100,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Basic docs
   - License
 
-[Unreleased]: https://github.com/MetaMask/ethjs/compare/v0.5.1...HEAD
+[Unreleased]: https://github.com/MetaMask/ethjs/compare/v0.6.0...HEAD
+[0.6.0]: https://github.com/MetaMask/ethjs/compare/v0.5.1...v0.6.0
 [0.5.1]: https://github.com/MetaMask/ethjs/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/MetaMask/ethjs/compare/v0.3.5...v0.5.0
 [0.3.5]: https://github.com/MetaMask/ethjs/compare/v0.3.4...v0.3.5
