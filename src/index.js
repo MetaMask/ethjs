@@ -25,7 +25,7 @@ function Eth(cprovider, options) {
   const self = this;
   self.options = options || {};
   const query = new EthQuery(cprovider, self.options.query);
-  Object.keys(Object.getPrototypeOf(query)).forEach((methodName) => {
+  Object.keys(Object.getPrototypeOf(query)).forEach(methodName => {
     self[methodName] = (...args) => query[methodName].apply(query, args);
   });
   self.filter = new EthFilter(query, self.options.query);

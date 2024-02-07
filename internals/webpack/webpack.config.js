@@ -38,7 +38,6 @@ var config = {                    // eslint-disable-line
   ],
 };
 
-
 if (env === 'production') {
   config.output.filename = filename + '.min.js'; // eslint-disable-line
   config.plugins
@@ -58,6 +57,5 @@ if (env === 'production') {
       },
     }));
 }
-
 
 module.exports = config;
