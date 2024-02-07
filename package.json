@@ -111,12 +111,12 @@
     "bn.js": "5.2.1",
     "chai": "^4.3.10",
     "cross-env": "^6.0.3",
-    "eslint": "^5.4.0",
-    "eslint-config-airbnb": "^17.1.1",
-    "eslint-import-resolver-webpack": "^0.2.4",
-    "eslint-plugin-import": "^2.18.0",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-react": "^7.14.2",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-import-resolver-webpack": "^0.13.8",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "eslint-plugin-react": "^7.20.6",
     "ganache": "7.6.0",
     "istanbul": "^0.4.5",
     "json-loader": "^0.5.7",
@@ -143,7 +143,8 @@
           "src/tests/**.js"
         ],
         "rules": {
-          "import/no-extraneous-dependencies": 0
+          "import/no-extraneous-dependencies": 0,
+          "arrow-parens": 0
         }
       }
     ],
@@ -172,6 +173,10 @@
       "no-use-before-define": 0,
       "newline-per-chained-call": 0,
       "arrow-body-style": [
+        2,
+        "as-needed"
+      ],
+      "arrow-parens": [
         2,
         "as-needed"
       ]
