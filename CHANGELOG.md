@@ -8,9 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.6.0]
 ### Changed
-- **BREAKING:** Update `bn.js` from `4.11.6` to `5.2.1` ([#19](https://github.com/MetaMask/ethjs-query/pull/19))
-- **BREAKING**: `@babel/runtime@^7.0.0` is now a peerDependency ([#17](https://github.com/MetaMask/ethjs-query/pull/17))
-- Update ethjs dependencies ([#19](https://github.com/MetaMask/ethjs-query/pull/19))
+- **BREAKING:** Update `bn.js` from `4.11.6` to `5.2.1` ([#19](https://github.com/MetaMask/ethjs/pull/19))
+- **BREAKING**: `@babel/runtime@^7.0.0` is now a peerDependency ([#17](https://github.com/MetaMask/ethjs/pull/17))
+- Update ethjs dependencies ([#19](https://github.com/MetaMask/ethjs/pull/19))
   - `@metamask/ethjs-contract@^0.3.3->^0.4.1`
   - `@metamask/ethjs-filter@^0.2.0->^0.3.0`
   - `@metamask/ethjs-provider-http@^0.2.0->^0.3.0`
@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `@metamask/ethjs-util@^0.2.1->^0.3.0`
 
 ### Fixed
-- Remove transitive dependency on babel-runtime ([#17](https://github.com/MetaMask/ethjs-query/pull/17)) ([#19](https://github.com/MetaMask/ethjs-query/pull/19))
+- Remove transitive dependency on babel-runtime ([#17](https://github.com/MetaMask/ethjs/pull/17)) ([#19](https://github.com/MetaMask/ethjs/pull/19))
 
 ## [0.5.1]
 ### Changed
