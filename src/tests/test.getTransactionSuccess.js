@@ -1,6 +1,6 @@
 const BN = require('bn.js');
 const { assert } = require('chai');
-const TestRPC = require('ganache-cli');
+const TestRPC = require('ganache');
 
 const provider = TestRPC.provider();
 const Eth = require('../index.js');

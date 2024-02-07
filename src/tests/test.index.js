@@ -1,5 +1,5 @@
 const { assert } = require('chai');
-const TestRPC = require('ganache-cli');
+const TestRPC = require('ganache');
 
 const provider = TestRPC.provider();
 const provider2 = TestRPC.provider();

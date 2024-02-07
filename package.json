@@ -117,7 +117,7 @@
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.2",
-    "ganache-cli": "6.12.2",
+    "ganache": "7.6.0",
     "istanbul": "^0.4.5",
     "json-loader": "^0.5.7",
     "mocha": "^7.2.0",
