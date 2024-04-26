@@ -109,7 +109,7 @@
     "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.0",
     "bn.js": "5.2.1",
-    "chai": "^4.3.10",
+    "chai": "^4.4.1",
     "cross-env": "^6.0.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -120,7 +120,7 @@
     "ganache": "7.6.0",
     "istanbul": "^0.4.5",
     "json-loader": "^0.5.7",
-    "mocha": "^7.2.0",
+    "mocha": "^8.4.0",
     "pre-commit": "^1.2.2",
     "rimraf": "^3.0.2",
     "webpack": "^3.12.0"
