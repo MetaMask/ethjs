@@ -109,7 +109,7 @@
     "@babel/register": "^7.0.0",
     "babel-loader": "^8.0.0",
     "bn.js": "5.2.1",
-    "chai": "^4.3.10",
+    "chai": "^4.4.1",
     "cross-env": "^6.0.3",
     "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.1",
@@ -118,9 +118,9 @@
     "eslint-plugin-jsx-a11y": "^6.8.0",
     "eslint-plugin-react": "^7.20.6",
     "ganache": "7.6.0",
-    "istanbul": "^0.4.5",
     "json-loader": "^0.5.7",
-    "mocha": "^7.2.0",
+    "mocha": "^8.4.0",
+    "nyc": "^15.1.0",
     "pre-commit": "^1.2.2",
     "rimraf": "^3.0.2",
     "webpack": "^3.12.0"
@@ -226,7 +226,7 @@
     "start": "npm test",
     "test": "mocha ./src/tests/**/*.js -R spec --timeout 2000000",
     "test:clean": "rimraf ./coverage",
-    "test:coverage": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- src/tests/**/*.js -R spec --timeout 2000000",
+    "test:coverage": "node ./node_modules/.bin/nyc ./node_modules/mocha/bin/_mocha -- src/tests/**/*.js -R spec --timeout 2000000",
     "test:lib": "mocha ./lib/tests/**/*.js -R spec --timeout 2000000"
   },
   "version": "0.6.0"
